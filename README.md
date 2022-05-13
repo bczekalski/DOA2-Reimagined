@@ -14,27 +14,27 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=atrX.vs
 
 Translations and important names of variables, functions, and assets in general can be found here.
 
-level.doa.var_da96f13c - arena laps
-level.doa.current_arena
-level.doa.round_number
-level.doa.arena_round_number
-level.doa.var_b351e5fb - current enemy count
-level.doa.rules.max_enemy_count
+`level.doa.var_da96f13c - arena laps`
+`level.doa.current_arena`
+`level.doa.round_number`
+`level.doa.arena_round_number`
+`level.doa.var_b351e5fb - current enemy count`
+`level.doa.rules.max_enemy_count`
 
 
 boost.type - 10
 nuke.type - 12
 firstperson.type- 35
 
-Fate numbers:
-1 - Firepower
-2 - Fortune
-3 - Friendship
-4 - Feet
-10 - Fury
-11 - Fortitude
-12 - Favor
-13 - Force
+`Fate numbers:`
+`1 - Firepower`
+`2 - Fortune`
+`3 - Friendship`
+`4 - Feet`
+`10 - Fury`
+`11 - Fortitude`
+`12 - Favor`
+`13 - Force`
 
 case "island":return 1;
 case "dock":return 2;
