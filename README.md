@@ -14,6 +14,8 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=atrX.vs
 
 Translations and important names of variables, functions, and assets in general can be found here.
 
+Important Global Variables:
+
 `level.doa.var_da96f13c - arena laps`
 `level.doa.current_arena`
 `level.doa.round_number`
@@ -21,10 +23,13 @@ Translations and important names of variables, functions, and assets in general 
 `level.doa.var_b351e5fb - current enemy count`
 `level.doa.rules.max_enemy_count`
 
+Self.type numbers for various pick-ups:
 
-boost.type - 10
-nuke.type - 12
-firstperson.type- 35
+`boost.type - 10`
+`nuke.type - 12`
+`firstperson.type- 35`
+
+Fates, and their corresponding values assigned to OBJECT.doa.fate:
 
 `Fate numbers:`
 `1 - Firepower`
@@ -36,19 +41,22 @@ firstperson.type- 35
 `12 - Favor`
 `13 - Force`
 
-case "island":return 1;
-case "dock":return 2;
-case "farm":return 3;
-case "graveyard":return 4;
-case "temple":return 5;
-case "safehouse":return 6;
-case "blood":return 7;
-case "cave":return 8;
-case "vengeance":return 9;
-case "sgen":return 10;
-case "apartments":return 11;
-case "sector":return 12;
-case "metro":return 13;
-case "clearing": return 14;
-case "newworld": return 15;
-case "boss": return 16;
+
+Arena Names and their index in the arena sequence: 
+
+`Island/Beach - "island" - 1`
+`Docks - "dock" - 2`
+`Farm/Cows - "farm" - 3`
+`Circle/Dirt Nap/Cemetery  "graveyard" - 4`
+`Temple/RoF Arena/Shadow Boogie - "temple" - 5`
+`Coliseum/Square - "safehouse" - 6`
+`Blood Lake/Blood Pool - "blood" - 7`
+`Margwa - "cave" - 8`
+`China - "vengeance" - 9`
+`Donut/Hole - "sgen" - 10`
+`Evac - "apartments" - 11`
+`Combine/Bridge "sector" - 12`
+`Metro - "metro" - 13`
+`Snow/Dogs/Wolves - "clearing" - 14`
+`Rooftops - "newworld" - 15`
+`Jungle - "boss" - 16`
