@@ -1,5 +1,17 @@
 # doa2
 
+For viewing and editing the source code on desktop, I highly recommend using Visual Studio Code with the CoD Syntax Highlighting extension.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Name: CoDScript
+Id: atrX.vscode-codscript
+Description: Syntax highlighting for Call of Duty scripts
+Version: 1.1.3
+Publisher: atrX
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=atrX.vscode-codscript
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 Translations and important names of variables, functions, and assets in general can be found here.
 
 level.doa.var_da96f13c - arena laps
