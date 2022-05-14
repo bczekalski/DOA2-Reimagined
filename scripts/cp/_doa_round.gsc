@@ -252,7 +252,7 @@ function main()
 				function_87703158();
 			}
 			doa_utility::function_c157030a();
-			waittillframeend;
+			waittillframeend();
 			level.doa.var_677d1262 = 0;
 			level.doa.round_end_time = gettime();
 			/#

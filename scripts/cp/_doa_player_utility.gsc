@@ -516,7 +516,7 @@ function turnplayershieldon(short_shield = 1)
 	if(isdefined(self.doa.shield_is_on))
 	{
 		self notify(#"turnplayershieldoff");
-		waittillframeend;
+		waittillframeend();
 	}
 	else if(short_shield)
 	{
@@ -565,7 +565,7 @@ function turnplayershieldon(short_shield = 1)
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_6b0da7ff()
+private function function_6b0da7ff()
 {
 	self endon(#"death");
 	while(true)
@@ -696,7 +696,7 @@ function function_93739933(vel)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_ab9cf24b(player)
+private function function_ab9cf24b(player)
 {
 	self endon(#"death");
 	if(!isdefined(level.doa) || !isdefined(level.doa.hazards))
@@ -913,7 +913,7 @@ function function_f3748dcb(count = 1)
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_3f041ff1()
+private function function_3f041ff1()
 {
 	self endon(#"disconnect");
 	self util::waittill_any("new_speed_pickup", "player_died", "speed_expired", "disconnect");
@@ -962,7 +962,7 @@ function function_832d21c2()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_af5211c2()
+private function function_af5211c2()
 {
 	self endon(#"disconnect");
 	self util::waittill_any("new_speed_pickup", "player_died", "speed_expired", "snare_broken", "disconnect");
@@ -1312,7 +1312,7 @@ function function_7d7a7fde()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_9fc6e261()
+private function function_9fc6e261()
 {
 	self waittill(#"actor_corpse", corpse);
 	wait(0.05);
@@ -1331,7 +1331,7 @@ function private function_9fc6e261()
 	Parameters: 4
 	Flags: Linked, Private
 */
-function private function_d392db04(var_adc420e5, origin, player, var_307c0d3)
+private function function_d392db04(var_adc420e5, origin, player, var_307c0d3)
 {
 	self endon(#"death");
 	/#
@@ -2171,7 +2171,7 @@ function function_3682cfe4(einflictor, attacker, idamage, smeansofdeath, sweapon
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_fdf74b3()
+private function function_fdf74b3()
 {
 	self notify(#"new_ignore_attacker");
 	self endon(#"new_ignore_attacker");
@@ -2373,7 +2373,7 @@ function function_68ece679(entnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_161ce9cd(delay = 2)
+private function function_161ce9cd(delay = 2)
 {
 	self endon(#"disconnect");
 	wait(delay);
@@ -2403,7 +2403,7 @@ function private function_161ce9cd(delay = 2)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_ad1d5fcb(var_243f32c0 = 0)
+private function function_ad1d5fcb(var_243f32c0 = 0)
 {
 	self endon(#"disconnect");
 	if(!isdefined(self))
@@ -2480,7 +2480,7 @@ function private function_ad1d5fcb(var_243f32c0 = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_bbdc9bc0()
+private function function_bbdc9bc0()
 {
 	self endon(#"disconnect");
 	self endon(#"player_respawned");
@@ -2809,7 +2809,7 @@ function function_c7471371()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_79489c4c(time)
+private function function_79489c4c(time)
 {
 	self endon(#"disconnect");
 	level endon(#"doa_game_is_over");
@@ -2829,7 +2829,7 @@ function private function_79489c4c(time)
 	Parameters: 3
 	Flags: Linked, Private
 */
-function private function_c240f40e(source, dest, orb)
+private function function_c240f40e(source, dest, orb)
 {
 	self endon(#"disconnect");
 	dest endon(#"disconnect");
@@ -2868,7 +2868,7 @@ function private function_c240f40e(source, dest, orb)
 	Parameters: 2
 	Flags: Linked, Private
 */
-function private function_2f150493(source, dest)
+private function function_2f150493(source, dest)
 {
 	self endon(#"disconnect");
 	level endon(#"doa_game_is_over");

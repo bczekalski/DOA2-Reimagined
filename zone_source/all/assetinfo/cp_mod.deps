@@ -22,7 +22,7 @@ scriptparsetree,scripts/cp/_doa_chicken_pickup.gsc
 scriptparsetree,scripts/cp/_doa_core.csc
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_core.csc,1652554437,
 scriptparsetree,scripts/cp/_doa_core.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_core.gsc,1652554743,
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_core.gsc,1652554999,
 scriptparsetree,scripts/cp/_doa_dev.gsc
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_dev.gsc,1652530263,
 scriptparsetree,scripts/cp/_doa_enemy.gsc
@@ -50,7 +50,7 @@ scriptparsetree,scripts/cp/_doa_pickups.gsc
 scriptparsetree,scripts/cp/_doa_player_challenge_room.gsc
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_player_challenge_room.gsc,1652553478,
 scriptparsetree,scripts/cp/_doa_player_utility.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_player_utility.gsc,1652554479,
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_player_utility.gsc,1652555891,
 scriptparsetree,scripts/cp/_doa_round.gsc
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_round.gsc,1652554479,
 scriptparsetree,scripts/cp/_doa_score.csc

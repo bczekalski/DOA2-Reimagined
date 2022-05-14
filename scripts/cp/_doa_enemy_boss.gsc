@@ -99,7 +99,7 @@ function private function_d95d34bd(spawner)
 			level.doa.boss thread function_e5e28b1b();
 			level.doa.boss thread function_555608c7();
 			level.doa.boss.var_f1eeb152 = getclosestpointonnavmesh(level.doa.boss.origin, 512);
-			waittillframeend;
+			waittillframeend();
 			level.doa.boss function_a2756e92();
 			if(!isdefined(level.doa.boss))
 			{
@@ -136,7 +136,7 @@ function private function_555608c7()
 	self thread namespace_1a381543::function_90118d8c("zmb_simianaut_roar");
 	self.health = 999999;
 	self.takedamage = 0;
-	waittillframeend;
+	waittillframeend();
 	self clearforcedgoal();
 	self clearpath();
 	self setgoal(self.origin, 1);

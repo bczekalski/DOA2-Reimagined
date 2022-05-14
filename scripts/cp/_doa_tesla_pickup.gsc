@@ -99,7 +99,7 @@ function tesla_damage_init(player)
 {
 	player endon(#"disconnect");
 	player endon(#"death");
-	waittillframeend;
+	waittillframeend();
 	if(!tesla_ok_to_discharge(player))
 	{
 		return;
