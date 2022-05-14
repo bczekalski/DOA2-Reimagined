@@ -1,4 +1,4 @@
-# doa2
+# Dead Ops Arcade 2
 
 For viewing and editing the source code on desktop, I highly recommend using Visual Studio Code with the CoD Syntax Highlighting extension.
 
