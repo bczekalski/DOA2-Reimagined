@@ -9,72 +9,12 @@ ignore_missing_shipped,cp_common
 ignore_missing_shipped,cp_patch
 rawfile,dummy.cfg
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\raw\dummy.cfg,1590992327,
-scriptparsetree,scripts/cp/_doa_arena.csc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_arena.csc,1652553478,
-scriptparsetree,scripts/cp/_doa_arena.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_arena.gsc,1652553478,
-scriptparsetree,scripts/cp/_doa_audio.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_audio.gsc,1652530263,
-scriptparsetree,scripts/cp/_doa_camera.csc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_camera.csc,1652530263,
-scriptparsetree,scripts/cp/_doa_chicken_pickup.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_chicken_pickup.gsc,1652554220,
-scriptparsetree,scripts/cp/_doa_core.csc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_core.csc,1652554437,
-scriptparsetree,scripts/cp/_doa_core.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_core.gsc,1652554999,
-scriptparsetree,scripts/cp/_doa_dev.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_dev.gsc,1652530263,
-scriptparsetree,scripts/cp/_doa_enemy.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_enemy.gsc,1652553478,
-scriptparsetree,scripts/cp/_doa_enemy_boss.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_enemy_boss.gsc,1652554479,
-scriptparsetree,scripts/cp/_doa_fate.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_fate.gsc,1652553478,
-scriptparsetree,scripts/cp/_doa_fx.csc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_fx.csc,1652554666,
-scriptparsetree,scripts/cp/_doa_fx.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_fx.gsc,1652553478,
-scriptparsetree,scripts/cp/_doa_gibs.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_gibs.gsc,1652530263,
-scriptparsetree,scripts/cp/_doa_hazard.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_hazard.gsc,1652553478,
-scriptparsetree,scripts/cp/_doa_outro.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_outro.gsc,1652554570,
-scriptparsetree,scripts/cp/_doa_pickup_area_affect.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_pickup_area_affect.gsc,1652554570,
-scriptparsetree,scripts/cp/_doa_pickups.csc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_pickups.csc,1652530263,
-scriptparsetree,scripts/cp/_doa_pickups.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_pickups.gsc,1652553478,
-scriptparsetree,scripts/cp/_doa_player_challenge_room.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_player_challenge_room.gsc,1652553478,
-scriptparsetree,scripts/cp/_doa_player_utility.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_player_utility.gsc,1652555891,
-scriptparsetree,scripts/cp/_doa_round.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_round.gsc,1652554479,
-scriptparsetree,scripts/cp/_doa_score.csc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_score.csc,1652554650,
-scriptparsetree,scripts/cp/_doa_score.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_score.gsc,1652530263,
-scriptparsetree,scripts/cp/_doa_sfx.csc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_sfx.csc,1652530263,
-scriptparsetree,scripts/cp/_doa_sfx.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_sfx.gsc,1652530263,
-scriptparsetree,scripts/cp/_doa_shield_pickup.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_shield_pickup.gsc,1652553478,
-scriptparsetree,scripts/cp/_doa_tesla_pickup.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_tesla_pickup.gsc,1652554479,
-scriptparsetree,scripts/cp/_doa_turret_pickup.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_turret_pickup.gsc,1652553478,
-scriptparsetree,scripts/cp/_doa_utility.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_utility.gsc,1652530263,
-scriptparsetree,scripts/cp/_doa_vehicle_pickup.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\_doa_vehicle_pickup.gsc,1652554570,
+scriptparsetree,scripts/cp/doa/_doa_core.gsc
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_core.gsc,1652554999,
 texturecombo,cp_mod
 assetlist,cp_mod
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\raw\gamedata\playeranim\playeranimtypes.txt,1590991484,
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\zone_source\cp_mod.zone,1652554622,3c82c9b8,29d29ce9,63021b9c,0566c5be
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\zone_source\cp_mod.zone,1652558062,2beedeb0,1966545b,a21f6777,a3d706d7
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\zone_source\cp_mod.class,1590991552,
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\zone_source\mod_default.class,1590991530,
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\zone_source\default.class,1590991552,
