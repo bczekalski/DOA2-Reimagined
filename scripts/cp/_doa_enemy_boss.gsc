@@ -48,7 +48,7 @@ function init()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d95d34bd(spawner)
+function private function_d95d34bd(spawner)
 {
 	level notify(#"hash_d95d34bd");
 	level endon(#"hash_d95d34bd");
@@ -99,7 +99,7 @@ private function function_d95d34bd(spawner)
 			level.doa.boss thread function_e5e28b1b();
 			level.doa.boss thread function_555608c7();
 			level.doa.boss.var_f1eeb152 = getclosestpointonnavmesh(level.doa.boss.origin, 512);
-			waittillframeend();
+			waittillframeend;
 			level.doa.boss function_a2756e92();
 			if(!isdefined(level.doa.boss))
 			{
@@ -121,7 +121,7 @@ private function function_d95d34bd(spawner)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_555608c7()
+function private function_555608c7()
 {
 	self endon(#"death");
 	self.takedamage = 1;
@@ -136,7 +136,7 @@ private function function_555608c7()
 	self thread namespace_1a381543::function_90118d8c("zmb_simianaut_roar");
 	self.health = 999999;
 	self.takedamage = 0;
-	waittillframeend();
+	waittillframeend;
 	self clearforcedgoal();
 	self clearpath();
 	self setgoal(self.origin, 1);
@@ -186,7 +186,7 @@ private function function_555608c7()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4e81959(waittime)
+function private function_4e81959(waittime)
 {
 	self endon(#"death");
 	wait(waittime);
@@ -202,7 +202,7 @@ private function function_4e81959(waittime)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a2756e92()
+function private function_a2756e92()
 {
 	self endon(#"death");
 	self notify(#"hash_d96c599c");
@@ -298,7 +298,7 @@ function function_ce73145c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_66efd1eb()
+function private function_66efd1eb()
 {
 	self endon(#"death");
 	self endon(#"hash_19503b17");
@@ -368,7 +368,7 @@ private function function_66efd1eb()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5bd24aae()
+function private function_5bd24aae()
 {
 	self endon(#"death");
 	level waittill(#"exit_taken");
@@ -387,7 +387,7 @@ private function function_5bd24aae()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2ca4656()
+function private function_2ca4656()
 {
 	self endon(#"death");
 	wait(0.1);
@@ -519,7 +519,7 @@ private function function_2ca4656()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e5e28b1b()
+function private function_e5e28b1b()
 {
 	self endon(#"death");
 	while(true)

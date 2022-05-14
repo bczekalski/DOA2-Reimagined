@@ -852,7 +852,7 @@ function function_ac410a13()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c41b5928()
+function private function_c41b5928()
 {
 	if(isdefined(level.doa.var_2d09b979) && level.doa.var_2d09b979)
 	{
@@ -2513,7 +2513,7 @@ function function_9615d68f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_972fe17c()
+function private function_972fe17c()
 {
 	if(self.def.type == 23 || self.def.type == 36)
 	{
@@ -2565,7 +2565,7 @@ function function_fd16eeab(type)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f56a2ab()
+function private function_f56a2ab()
 {
 	if(self.def.type == 32)
 	{
@@ -2602,7 +2602,7 @@ private function function_f56a2ab()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5441452b(maxdistsq)
+function private function_5441452b(maxdistsq)
 {
 	self notify(#"hash_c42bb828");
 	self endon(#"hash_c42bb828");

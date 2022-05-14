@@ -31,7 +31,7 @@ function function_cdfa9ce8(bird)
 	bird notify(#"hash_cf62504");
 	bird endon(#"hash_cf62504");
 	bird endon(#"death");
-	bird useanimtree($critter);
+	bird useanimtree(&critter);
 	curanim = %critter::a_chicken_react_up_down;
 	lastanim = %critter::a_chicken_idle_peck;
 	bird thread namespace_1a381543::function_90118d8c("zmb_dblshot_squawk");
@@ -242,7 +242,7 @@ function function_3118ca4d(player)
 	self endon(#"hash_3118ca4d");
 	self endon(#"death");
 	self waittill(#"spin_out", immediate);
-	waittillframeend();
+	waittillframeend;
 	self notify(#"spinning_out");
 	arrayremovevalue(player.doa.var_3cdd8203, self);
 	if(!(isdefined(immediate) && immediate))
@@ -582,7 +582,7 @@ function function_8fb467a7(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_cea0c915(player, weapon)
+function private function_cea0c915(player, weapon)
 {
 	if(isdefined(player))
 	{
@@ -945,7 +945,7 @@ function function_2d0f96ef(player)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_5af02c44(target, num, offset)
+function private function_5af02c44(target, num, offset)
 {
 	self endon(#"death");
 	self endon(#"spinning_out");
@@ -993,7 +993,7 @@ private function function_5af02c44(target, num, offset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e4f21fa9()
+function private function_e4f21fa9()
 {
 	roll = randomint(100);
 	prize = "none";

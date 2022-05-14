@@ -117,7 +117,7 @@ function function_471d1403()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4952be41(room)
+function private function_4952be41(room)
 {
 	level endon(#"hash_16154574");
 	level endon(#"hash_d1f5acf7");

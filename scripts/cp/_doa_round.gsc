@@ -30,7 +30,7 @@
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_542758d0()
+function private function_542758d0()
 {
 	level.doa.var_f5e35752 = [];
 	level.doa.var_5a609640 = [];
@@ -102,7 +102,7 @@ function function_8c6e89b4(round)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5f5d09ae()
+function private function_5f5d09ae()
 {
 	def = function_8c6e89b4(level.doa.round_number);
 	if(!isdefined(def))
@@ -252,7 +252,7 @@ function main()
 				function_87703158();
 			}
 			doa_utility::function_c157030a();
-			waittillframeend();
+			waittillframeend;
 			level.doa.var_677d1262 = 0;
 			level.doa.round_end_time = gettime();
 			/#
@@ -313,7 +313,7 @@ function main()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d87cb356()
+function private function_d87cb356()
 {
 	self notify(#"hash_d87cb356");
 	self endon(#"hash_d87cb356");
@@ -485,7 +485,7 @@ function function_55762a85(spawn_origin)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ff7f941a(def)
+function private function_ff7f941a(def)
 {
 	num = doa_utility::function_2f0d697f(def.spawner);
 	if(num >= def.var_84aef63e)
@@ -697,7 +697,7 @@ function function_87703158(var_372a8daa = 0)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_da304666(wave_number, round_number)
+function private function_da304666(wave_number, round_number)
 {
 	wave = spawnstruct();
 	wave.spawn_duration = 1 + randomfloatrange(0, 1 + wave_number * 0.3) + randomfloatrange(0, 1 + round_number * 0.2);
@@ -749,7 +749,7 @@ function function_703bb8b2(round_number)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d9345c74()
+function private function_d9345c74()
 {
 	foreach(var_dfe3eff5, player in getplayers())
 	{

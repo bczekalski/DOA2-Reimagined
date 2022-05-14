@@ -1133,7 +1133,7 @@ function function_ec2caec3(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_38452435(localclientnum)
+function private function_38452435(localclientnum)
 {
 	self notify(#"hash_38452435");
 	self endon(#"hash_38452435");
@@ -1357,10 +1357,7 @@ function function_f7c0d598(mapping = "zombietron")
 	self endon(#"hash_f7c0d598");
 	self endon(#"entityshutdown");
 	self endon(#"disconnect");
-	/#
-		loc_00004FA8:
-		debugmsg("" + (isdefined(self.name) ? self.name : "") + "" + mapping + "" + (self islocalplayer() ? "" : ""));
-	#/
+	
 	if(self islocalplayer())
 	{
 		clientnum = self getlocalclientnumber();
@@ -2030,21 +2027,11 @@ function function_12c2fbcb()
 		self.doa = level.var_29e6f519[self.entnum];
 		if(isdefined(self.doa.player))
 		{
-			/#
-				loc_00006CBC:
-				loc_00006CFC:
-				debugmsg("" + (isdefined(self.name) ? self.name : "") + "" + (isdefined(self.doa.player) ? self.doa.player.name : "") + "" + self getentitynumber() + "" + (isdefined(self.doa.player) ? self.doa.player getentitynumber() : -1));
-			#/
-			/#
-				assert(self.doa.player == self);
-			#/
+		
 		}
 		namespace_64c6b720::function_e06716c7(self.doa);
 		self.doa.player = self;
-		/#
-			loc_00006DF4:
-			debugmsg("" + (isdefined(self.name) ? self.name : "") + "" + self.entnum + "" + (isdefined(self.doa.player) ? self.doa.player getentitynumber() : -1));
-		#/
+		
 		self cameraforcedisablescriptcam(0);
 		self camerasetupdatecallback(&namespace_ad544aeb::function_d207ecc1);
 		setdvar("vr_playerScale", 30);

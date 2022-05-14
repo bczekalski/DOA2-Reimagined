@@ -127,19 +127,7 @@ function function_d3f117f9(doa, idx)
 	{
 		return;
 	}
-	/#
-		for(i = 0; i < level.var_29e6f519.size; i++)
-		{
-			if(level.var_29e6f519[i] == doa)
-			{
-				idx = i;
-				break;
-			}
-		}
-		loc_00001094:
-		txt = "" + (isdefined(idx) ? idx : "") + "" + (isdefined(doa.player) ? doa.player getentitynumber() : "");
-		namespace_693feb87::debugmsg(txt);
-	#/
+	
 	doa.score = 0;
 	doa.var_db3637c0 = 0;
 	doa.var_c4c3767e = 0;

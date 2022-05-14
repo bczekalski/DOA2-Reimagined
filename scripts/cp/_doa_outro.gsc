@@ -677,7 +677,7 @@ function function_5ec4f559(player)
 function function_5e06cff2()
 {
 	level endon(#"hash_448ca7a6");
-	self useanimtree($generic);
+	self useanimtree(&generic);
 	self setmodel(level.doa.var_260a85f3[randomint(level.doa.var_260a85f3.size)]);
 	if(!isdefined(self.script_noteworthy))
 	{
@@ -835,7 +835,7 @@ function function_fb3b78fe()
 {
 	level endon(#"hash_448ca7a6");
 	self endon(#"death");
-	self useanimtree($generic);
+	self useanimtree(&generic);
 	while(true)
 	{
 		if(isdefined(self.taunt) && self.taunt)
@@ -889,7 +889,7 @@ function function_e4d4b80(animation)
 	level endon(#"hash_448ca7a6");
 	self notify(#"hash_e4d4b80");
 	self endon(#"hash_e4d4b80");
-	self useanimtree($generic);
+	self useanimtree(&generic);
 	while(true)
 	{
 		self animscripted("podium", self.origin, self.angles, animation, "normal", %generic::body, 1, 0.5, 0.5);
@@ -930,7 +930,7 @@ function function_d040f4a6(podium)
 	level waittill(#"hash_314666df");
 	playermodel = podium.playermodel;
 	playermodel.team = "axis";
-	playermodel useanimtree($generic);
+	playermodel useanimtree(&generic);
 	playermodel solid();
 	playermodel.takedamage = 1;
 	level.doa.var_c12009c9 = podium.var_53538eb0;

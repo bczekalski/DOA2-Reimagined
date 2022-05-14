@@ -78,7 +78,7 @@ function main()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function _load()
+function private _load()
 {
 	timeout = gettime() + 5000;
 	while(getnumexpectedplayers() == 0 && gettime() < timeout)
@@ -304,7 +304,7 @@ function initialblack(time = 12)
 	Parameters: 2
 	Flags: Private
 */
-private function function_154ab047(currentround, idx)
+function private function_154ab047(currentround, idx)
 {
 	self endon(#"hash_437a340d");
 	while(isdefined(self) && isdefined(idx))
@@ -848,7 +848,7 @@ function function_53bcdb30()
 */
 function function_53b7b84f()
 {
-	waittillframeend();
+	waittillframeend;
 	game["menu_start_menu"] = "DOA_INGAME_PAUSE";
 	game["menu_class"] = "DOA_INGAME_PAUSE";
 }

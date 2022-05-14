@@ -540,7 +540,7 @@ function function_32bcda58(var_7aac5112, attacker)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9fc6e261(type)
+function private function_9fc6e261(type)
 {
 	self waittill(#"actor_corpse", corpse);
 	wait(0.05);

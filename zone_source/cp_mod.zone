@@ -8,7 +8,7 @@ rawfile,dummy.cfg
 scriptparsetree,scripts/cp/_doa_arena.csc
 scriptparsetree,scripts/cp/_doa_arena.gsc
 scriptparsetree,scripts/cp/_doa_audio.gsc
-scriptparsetree,scripts/cp/_doa_camera.gsc
+scriptparsetree,scripts/cp/_doa_camera.csc
 scriptparsetree,scripts/cp/_doa_chicken_pickup.gsc
 scriptparsetree,scripts/cp/_doa_core.csc
 scriptparsetree,scripts/cp/_doa_core.gsc
@@ -16,7 +16,7 @@ scriptparsetree,scripts/cp/_doa_dev.gsc
 scriptparsetree,scripts/cp/_doa_enemy.gsc
 scriptparsetree,scripts/cp/_doa_enemy_boss.gsc
 scriptparsetree,scripts/cp/_doa_fate.gsc
-scriptparsetree,scripts/cp/_doa_fxc.csc
+scriptparsetree,scripts/cp/_doa_fx.csc
 scriptparsetree,scripts/cp/_doa_fx.gsc
 scriptparsetree,scripts/cp/_doa_gibs.gsc
 scriptparsetree,scripts/cp/_doa_hazard.gsc

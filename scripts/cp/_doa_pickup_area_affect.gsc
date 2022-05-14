@@ -119,7 +119,7 @@ function function_ca06d008(player, origin)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_963e13a0()
+function private function_963e13a0()
 {
 	self endon(#"death");
 	while(true)
@@ -178,7 +178,7 @@ private function function_963e13a0()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_770e1327(trigger)
+function private function_770e1327(trigger)
 {
 	self endon(#"death");
 	self notify(#"hash_770e1327");
@@ -252,7 +252,7 @@ function timeshifterupdate(player, origin)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_78d20ce0()
+function private function_78d20ce0()
 {
 	self endon(#"death");
 	while(true)
@@ -306,7 +306,7 @@ private function function_78d20ce0()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_59a20c67(trigger)
+function private function_59a20c67(trigger)
 {
 	self endon(#"death");
 	self notify(#"hash_59a20c67");
@@ -359,7 +359,7 @@ function function_159bb1dd(player, origin)
 	monkey setmodel(level.doa.var_d6256e83);
 	monkey thread namespace_eaa992c::function_285a2999(namespace_831a4a7c::function_e7e0aa7f(player.entnum));
 	def = doa_pickups::function_bac08508(11);
-	monkey useanimtree($zombie_cymbal_monkey);
+	monkey useanimtree(&zombie_cymbal_monkey);
 	monkey animscripted("anim", monkey.origin, monkey.angles, %zombie_cymbal_monkey::o_monkey_bomb);
 	monkey.angles = (0, randomint(360), 0);
 	monkey makesentient();

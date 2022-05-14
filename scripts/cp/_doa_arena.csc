@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a55a134f()
+function private function_a55a134f()
 {
 	arenas = struct::get_array("arena_center");
 	for(i = 0; i < arenas.size; i++)

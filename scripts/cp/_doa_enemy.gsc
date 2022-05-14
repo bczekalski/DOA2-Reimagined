@@ -117,7 +117,7 @@ function function_f8d04082(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_599c952d(entity)
+function private function_599c952d(entity)
 {
 	if(entity.missinglegs === 1)
 	{
@@ -143,7 +143,7 @@ private function function_599c952d(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_34a5b8e4(entity, asmstatename)
+function private function_34a5b8e4(entity, asmstatename)
 {
 	animationstatenetworkutility::requeststate(entity, asmstatename);
 	entity ghost();
@@ -160,7 +160,7 @@ private function function_34a5b8e4(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f821465d(entity, asmstatename)
+function private function_f821465d(entity, asmstatename)
 {
 	entity show();
 	entity solid();
@@ -176,7 +176,7 @@ private function function_f821465d(entity, asmstatename)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_e57c0c7b(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private function_e57c0c7b(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity orientmode("face angle", entity.angles[1]);
 	entity setrepairpaths(0);
@@ -215,7 +215,7 @@ private function function_e57c0c7b(entity, mocompanim, mocompanimblendouttime, m
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_c97089da(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private function_c97089da(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity.blockingpain = 0;
 	entity setrepairpaths(1);
@@ -646,7 +646,7 @@ function function_3209ead3(behaviortreeentity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f5ef629b()
+function private function_f5ef629b()
 {
 	self endon(#"death");
 	self endon(#"hash_d96c599c");
@@ -1384,7 +1384,7 @@ function zombie_eye_glow_stop()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8abf3753(time = 1)
+function private function_8abf3753(time = 1)
 {
 	self endon(#"death");
 	wait(time);

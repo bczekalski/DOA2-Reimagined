@@ -31,7 +31,7 @@
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a55a134f()
+function private function_a55a134f()
 {
 	arenas = struct::get_array("arena_center");
 	for(i = 0; i < arenas.size; i++)
@@ -104,7 +104,7 @@ function init()
 	Parameters: 8
 	Flags: Linked, Private
 */
-private function function_abd3b624(name, var_5281efe5, type, text, var_cbad0e8f, var_c9a1f25a, var_c92c30d9, var_6f369ab4)
+function private function_abd3b624(name, var_5281efe5, type, text, var_cbad0e8f, var_c9a1f25a, var_c92c30d9, var_6f369ab4)
 {
 	room = spawnstruct();
 	room.name = name;
@@ -246,7 +246,7 @@ function function_46b3be09()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6b351e04(type = 0, var_436ba068)
+function private function_6b351e04(type = 0, var_436ba068)
 {
 	temp = doa_utility::function_4e9a23a9(level.doa.var_ec2bff7b);
 	if(type != 0)
@@ -405,7 +405,7 @@ function function_e88371e5()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1c54aa82(room)
+function private function_1c54aa82(room)
 {
 	level.doa.var_677d1262 = 0;
 	players = namespace_831a4a7c::function_5eb6e4d1();
@@ -657,7 +657,7 @@ function function_b0e9983(name)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9b67513c(name)
+function private function_9b67513c(name)
 {
 	switch(name)
 	{
@@ -741,7 +741,7 @@ private function function_9b67513c(name)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_b7dafa0c(name, center, valid)
+function private function_b7dafa0c(name, center, valid)
 {
 	struct = spawnstruct();
 	struct.name = name;
@@ -1336,7 +1336,7 @@ function function_7d65367c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_47f8f274()
+function private function_47f8f274()
 {
 	wait(0.1);
 	level util::waittill_any("exit_taken", "doa_game_is_over");
@@ -1353,7 +1353,7 @@ private function function_47f8f274()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_17665174(trigger)
+function private function_17665174(trigger)
 {
 	level endon(#"exit_taken");
 	level endon(#"doa_game_is_over");
