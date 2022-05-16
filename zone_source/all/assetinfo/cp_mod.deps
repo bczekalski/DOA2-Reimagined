@@ -7,14 +7,22 @@ ignore_missing_shipped,core_ui
 ignore_missing_shipped,core_common
 ignore_missing_shipped,cp_common
 ignore_missing_shipped,cp_patch
-rawfile,dummy.cfg
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\raw\dummy.cfg,1590992327,
+scriptparsetree,scripts/cp/doa/_doa_arena.csc
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_arena.csc,1646419034,
+scriptparsetree,scripts/cp/doa/_doa_arena.gsc
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_arena.gsc,1652658580,
+scriptparsetree,scripts/cp/doa/_doa_chicken_pickup.gsc
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_chicken_pickup.gsc,1652644355,
 scriptparsetree,scripts/cp/doa/_doa_core.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_core.gsc,1652554999,
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_core.gsc,1652657859,
+scriptparsetree,scripts/cp/doa/_doa_round.gsc
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_round.gsc,1652644355,
+scriptparsetree,scripts/cp/doa/_doa_utility.gsc
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_utility.gsc,1646419036,
 texturecombo,cp_mod
 assetlist,cp_mod
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\raw\gamedata\playeranim\playeranimtypes.txt,1590991484,
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\zone_source\cp_mod.zone,1652558062,2beedeb0,1966545b,a21f6777,a3d706d7
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\zone_source\cp_mod.zone,1652658014,c2aa5b01,a50fe00c,af55ab8e,b0462670
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\zone_source\cp_mod.class,1590991552,
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\zone_source\mod_default.class,1590991530,
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\share\zone_source\default.class,1590991552,

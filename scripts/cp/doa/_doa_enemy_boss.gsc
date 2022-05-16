@@ -160,9 +160,9 @@ function private function_555608c7()
 	self unlink();
 	self orientmode("face enemy");
 	self animscripted("pissedoff", self.origin, self.angles, "ai_zombie_doa_simianaut_ground_pound");
-	self waittill_match(#"pissedoff");
+	self waittillmatch(#"pissedoff");
 	playfx(level._effect["ground_pound"], self.origin);
-	self waittill_match(#"pissedoff");
+	self waittillmatch(#"pissedoff");
 	self.anchor delete();
 	self.var_faa677d7 = gettime() + 10000;
 	self thread namespace_1a381543::function_90118d8c("zmb_simianaut_roar");
@@ -259,7 +259,7 @@ function function_ce73145c()
 			if(!isplayer(guy))
 			{
 				self animscripted("pissedoff", self.origin, self.angles, "ai_zombie_doa_simianaut_attack_v1");
-				self waittill_match(#"pissedoff");
+				self waittillmatch(#"pissedoff");
 				if(isdefined(guy))
 				{
 					playfx(level._effect["ground_pound"], guy.origin);
@@ -283,7 +283,7 @@ function function_ce73145c()
 			{
 				guy.doa.var_1db1e638 = gettime() + 10000;
 				self animscripted("pissedoff", self.origin, self.angles, "ai_zombie_doa_simianaut_chestbeat");
-				self waittill_match(#"pissedoff");
+				self waittillmatch(#"pissedoff");
 			}
 		}
 	}
@@ -340,7 +340,7 @@ function private function_66efd1eb()
 				continue;
 			}
 			distsq = distancesquared(self.origin, player.origin);
-			if(distsq <= 128 * 128)
+			if(distsq <= (128 * 128))
 			{
 				self.ignoreall = 0;
 				if(getdvarint("scr_boss_debug", 0))
@@ -413,7 +413,7 @@ function private function_2ca4656()
 		}
 		items = getentarray("a_pickup_item", "script_noteworthy");
 		pickupsitems = [];
-		foreach(var_d8bff18b, item in items)
+		foreach(item in items)
 		{
 			if(!isdefined(item))
 			{
@@ -531,7 +531,7 @@ function private function_e5e28b1b()
 			if(isdefined(pickup))
 			{
 				distsq = distancesquared(self.origin, pickup.origin);
-				if(distsq < 72 * 72)
+				if(distsq < (72 * 72))
 				{
 					pickup thread doa_pickups::function_6b4a5f81();
 				}

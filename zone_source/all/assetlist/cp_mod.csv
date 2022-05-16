@@ -1,3 +1,7 @@
-rawfile,dummy.cfg
+scriptparsetree,scripts/cp/doa/_doa_arena.csc
+scriptparsetree,scripts/cp/doa/_doa_arena.gsc
+scriptparsetree,scripts/cp/doa/_doa_chicken_pickup.gsc
 scriptparsetree,scripts/cp/doa/_doa_core.gsc
+scriptparsetree,scripts/cp/doa/_doa_round.gsc
+scriptparsetree,scripts/cp/doa/_doa_utility.gsc
 keyvaluepairs,cp_mod

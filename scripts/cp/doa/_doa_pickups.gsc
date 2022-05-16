@@ -275,7 +275,7 @@ function function_9fc58738(var_742d8fb5, origin, launch = 0, ondeath = 0, var_b0
 	pickup.angles = (0, randomint(360), 0);
 	if(getdvarint("scr_doa_client_side_pickup_models", 1) && !launch)
 	{
-		pickup clientfield::set("pickuptype", pickup.type + pickup.def.variant << 6);
+		pickup clientfield::set("pickuptype", pickup.type + (pickup.def.variant << 6));
 		pickup setmodel("tag_origin");
 		pickup.var_52cf38a3 = 1;
 	}
@@ -332,15 +332,18 @@ function function_9fc58738(var_742d8fb5, origin, launch = 0, ondeath = 0, var_b0
 				scale = 7;
 				increment = 48;
 			}
-			else if(randomint(getdvarint("scr_doa_big_nurgle_per_count", 10)) == 0)
-			{
-				scale = 5;
-				increment = 28;
-			}
 			else
 			{
-				scale = 3;
-				increment = 18;
+				if(randomint(getdvarint("scr_doa_big_nurgle_per_count", 10)) == 0)
+				{
+					scale = 5;
+					increment = 28;
+				}
+				else
+				{
+					scale = 3;
+					increment = 18;
+				}
 			}
 			pickup.var_25ffdef1 = increment;
 			pickup thread function_b3289e6d(scale);
@@ -353,35 +356,38 @@ function function_9fc58738(var_742d8fb5, origin, launch = 0, ondeath = 0, var_b0
 			barpoints = quarterbar;
 			scale = 1;
 		}
-		else if(isdefined(var_b0d7c311))
-		{
-			barpoints = var_b0d7c311 * quarterbar;
-			scale = var_b0d7c311;
-		}
 		else
 		{
-			barpoints = quarterbar;
-			scale = 1;
-			roll = randomint(100);
-			inc = 0;
-			if(roll > 80)
+			if(isdefined(var_b0d7c311))
 			{
-				inc = inc + quarterbar;
+				barpoints = var_b0d7c311 * quarterbar;
+				scale = var_b0d7c311;
 			}
-			if(roll > 90)
+			else
 			{
-				inc = inc + quarterbar;
+				barpoints = quarterbar;
+				scale = 1;
+				roll = randomint(100);
+				inc = 0;
+				if(roll > 80)
+				{
+					inc = inc + quarterbar;
+				}
+				if(roll > 90)
+				{
+					inc = inc + quarterbar;
+				}
+				if(roll > 95)
+				{
+					inc = inc + quarterbar;
+				}
+				if(roll > 98)
+				{
+					inc = inc + quarterbar;
+				}
+				barpoints = barpoints + randomfloat(inc);
+				scale = scale + (barpoints / quarterbar);
 			}
-			if(roll > 95)
-			{
-				inc = inc + quarterbar;
-			}
-			if(roll > 98)
-			{
-				inc = inc + quarterbar;
-			}
-			barpoints = barpoints + randomfloat(inc);
-			scale = scale + barpoints / quarterbar;
 		}
 		pickup thread function_b3289e6d(scale);
 		pickup.var_5d2140f2 = int(barpoints);
@@ -392,25 +398,34 @@ function function_9fc58738(var_742d8fb5, origin, launch = 0, ondeath = 0, var_b0
 				var_742d8fb5.var_cee3d90d = "glow_green";
 				var_742d8fb5.var_d1c98aa0 = "gem_trail_green";
 			}
-			else if(issubstr(var_742d8fb5.gdtname, "ruby"))
-			{
-				var_742d8fb5.var_cee3d90d = "glow_red";
-				var_742d8fb5.var_d1c98aa0 = "gem_trail_red";
-			}
-			else if(issubstr(var_742d8fb5.gdtname, "sapphire"))
-			{
-				var_742d8fb5.var_cee3d90d = "glow_blue";
-				var_742d8fb5.var_d1c98aa0 = "gem_trail_blue";
-			}
-			else if(issubstr(var_742d8fb5.gdtname, "beryl"))
-			{
-				var_742d8fb5.var_cee3d90d = "glow_yellow";
-				var_742d8fb5.var_d1c98aa0 = "gem_trail_yellow";
-			}
 			else
 			{
-				var_742d8fb5.var_cee3d90d = "glow_white";
-				var_742d8fb5.var_d1c98aa0 = "gem_trail_white";
+				if(issubstr(var_742d8fb5.gdtname, "ruby"))
+				{
+					var_742d8fb5.var_cee3d90d = "glow_red";
+					var_742d8fb5.var_d1c98aa0 = "gem_trail_red";
+				}
+				else
+				{
+					if(issubstr(var_742d8fb5.gdtname, "sapphire"))
+					{
+						var_742d8fb5.var_cee3d90d = "glow_blue";
+						var_742d8fb5.var_d1c98aa0 = "gem_trail_blue";
+					}
+					else
+					{
+						if(issubstr(var_742d8fb5.gdtname, "beryl"))
+						{
+							var_742d8fb5.var_cee3d90d = "glow_yellow";
+							var_742d8fb5.var_d1c98aa0 = "gem_trail_yellow";
+						}
+						else
+						{
+							var_742d8fb5.var_cee3d90d = "glow_white";
+							var_742d8fb5.var_d1c98aa0 = "gem_trail_white";
+						}
+					}
+				}
 			}
 		}
 	}
@@ -491,18 +506,21 @@ function function_92d90e55(var_742d8fb5, location, timeout = 1, rotate = 1, angl
 		{
 			variant = 0;
 		}
-		pickup clientfield::set("pickuptype", pickup.type + variant << 6);
+		pickup clientfield::set("pickuptype", pickup.type + (variant << 6));
 		pickup setmodel("tag_origin");
 		pickup.var_52cf38a3 = 1;
 	}
-	else if(pickup.type == 16)
-	{
-		weaponmodel = getweaponworldmodel(getweapon(var_742d8fb5.gdtname));
-		pickup setmodel(weaponmodel);
-	}
 	else
 	{
-		pickup setmodel(var_742d8fb5.gdtname);
+		if(pickup.type == 16)
+		{
+			weaponmodel = getweaponworldmodel(getweapon(var_742d8fb5.gdtname));
+			pickup setmodel(weaponmodel);
+		}
+		else
+		{
+			pickup setmodel(var_742d8fb5.gdtname);
+		}
 	}
 	if(level.doa.arena_round_number == 3)
 	{
@@ -600,9 +618,9 @@ function function_bbb6019d(pickup)
 {
 	if(pickup.def.type == 23 || pickup.def.type == 36)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -618,21 +636,21 @@ function function_274c7b5(pickup)
 {
 	if(pickup.def.type == 1)
 	{
-		return 1;
+		return true;
 	}
 	if(pickup.def.type == 23 || pickup.def.type == 36)
 	{
-		return 0;
+		return false;
 	}
 	if(pickup.type == 5)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(pickup.def.uber) && pickup.def.uber)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -741,7 +759,7 @@ function spawnubertreasure(spawn_point, amount, radius = 85, launch = 0, ondeath
 		}
 		if(isdefined(specific))
 		{
-			foreach(var_823ae776, treasure in level.doa.pickups.var_3e3b7a53)
+			foreach(treasure in level.doa.pickups.var_3e3b7a53)
 			{
 				if(treasure.gdtname == specific)
 				{
@@ -812,7 +830,7 @@ function function_68c8220(player)
 	ent = spawn("script_origin", (0, 0, 0));
 	ent playloopsound("zmb_pickup_umbrella_loop");
 	locations = doa_utility::function_308fa126(16);
-	amount = randomintrange(namespace_831a4a7c::function_5eb6e4d1().size * 3 + 4, namespace_831a4a7c::function_5eb6e4d1().size * 5 + 6);
+	amount = randomintrange((namespace_831a4a7c::function_5eb6e4d1().size * 3) + 4, (namespace_831a4a7c::function_5eb6e4d1().size * 5) + 6);
 	while(amount)
 	{
 		item = spawnubertreasure(locations[randomint(locations.size)] + vectorscale((0, 0, 1), 2200), 1, 128, 1, 1, 1, level.doa.var_9bf7e61b, undefined, 1, 0, 0)[0];
@@ -857,7 +875,7 @@ function private function_c41b5928()
 	if(isdefined(level.doa.var_2d09b979) && level.doa.var_2d09b979)
 	{
 		level.doa.var_2d09b979 = undefined;
-		return 1;
+		return true;
 	}
 	var_a60f3304 = 0;
 	for(i = 0; i < level.doa.pickups.items.size; i++)
@@ -870,11 +888,11 @@ function private function_c41b5928()
 	/#
 		assert(var_a60f3304);
 	#/
-	if(level.doa.var_3cc04c3a.size < var_a60f3304 / 4)
+	if(level.doa.var_3cc04c3a.size < (var_a60f3304 / 4))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -891,7 +909,7 @@ function function_51b3bbf6(type = 0)
 	/#
 		assert(level.doa.pickups.items.size);
 	#/
-	foreach(var_9e0be2, pickup in level.doa.pickups.items)
+	foreach(pickup in level.doa.pickups.items)
 	{
 		if(isdefined(pickup.var_500db33e) && isinarray(pickup.var_500db33e, level.doa.round_number))
 		{
@@ -1274,8 +1292,8 @@ function function_30768f24(item, time)
 	while(isdefined(item) && time > 0.15)
 	{
 		dist = distance(self.origin, item.origin);
-		step = dist / time / intervals;
-		v_to_target = vectornormalize(self.origin - item.origin) * step;
+		step = (dist / time) / intervals;
+		v_to_target = (vectornormalize(self.origin - item.origin)) * step;
 		/#
 		#/
 		item moveto(item.origin + v_to_target, 0.15);
@@ -1466,10 +1484,10 @@ function function_c129719a(type)
 		case 10:
 		case 12:
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1502,7 +1520,7 @@ function function_967df2b6(var_1db3e61a)
 			return 0;
 		}
 		pickupsitems = getentarray("a_pickup_item", "script_noteworthy");
-		foreach(var_58c98450, pickup in pickupsitems)
+		foreach(pickup in pickupsitems)
 		{
 			if(isdefined(pickup) && pickup.type == 35)
 			{
@@ -1520,7 +1538,7 @@ function function_967df2b6(var_1db3e61a)
 	}
 	if(var_1db3e61a.type == 7 || var_1db3e61a.type == 19 || var_1db3e61a.type == 6 || var_1db3e61a.type == 34)
 	{
-		foreach(var_cbbb9272, player in namespace_831a4a7c::function_5eb6e4d1())
+		foreach(player in namespace_831a4a7c::function_5eb6e4d1())
 		{
 			if(isdefined(player.doa.var_5a34cdc9))
 			{
@@ -1546,7 +1564,7 @@ function function_967df2b6(var_1db3e61a)
 		{
 			return 0;
 		}
-		foreach(var_c6af4ad3, player in namespace_831a4a7c::function_5eb6e4d1())
+		foreach(player in namespace_831a4a7c::function_5eb6e4d1())
 		{
 			if(isdefined(player.doa.vehicle))
 			{
@@ -1682,21 +1700,21 @@ function function_d526f0bb()
 					{
 						players = namespace_831a4a7c::function_5eb6e4d1();
 						var_63ef8ae = [];
-						foreach(var_495616a1, player in players)
+						foreach(player in players)
 						{
 							if(isdefined(player.doa.respawning) && player.doa.respawning)
 							{
 								var_63ef8ae[var_63ef8ae.size] = player;
 							}
 						}
-						foreach(var_bb5d85dc, player in players)
+						foreach(player in players)
 						{
 							if(!(isdefined(player.doa.respawning) && player.doa.respawning))
 							{
 								var_63ef8ae[var_63ef8ae.size] = player;
 							}
 						}
-						foreach(var_c9817bf6, guy in var_63ef8ae)
+						foreach(guy in var_63ef8ae)
 						{
 							if(isdefined(guy))
 							{
@@ -1721,8 +1739,8 @@ function function_d526f0bb()
 				}
 				case 2:
 				{
-					player.doa.var_c2b9d7d0 = gettime() + int(player doa_utility::function_1ded48e6(level.doa.rules.var_c05a9a3f) * 1000);
-					player namespace_831a4a7c::function_71dab8e8(int(getdvarint("scr_doa_weapon_increment_range", 1024) / getdvarint("scr_doa_weapon_increment", 64)) - 1);
+					player.doa.var_c2b9d7d0 = gettime() + (int(player doa_utility::function_1ded48e6(level.doa.rules.var_c05a9a3f) * 1000));
+					player namespace_831a4a7c::function_71dab8e8((int(getdvarint("scr_doa_weapon_increment_range", 1024) / getdvarint("scr_doa_weapon_increment", 64))) - 1);
 					player thread namespace_1a381543::function_90118d8c("zmb_pickup_ammo");
 					player thread function_322262ea();
 					break;
@@ -2049,7 +2067,7 @@ function function_851d4a18()
 	level endon(#"hash_3b432f18");
 	while(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 	{
-		foreach(var_abf2778c, player in getplayers())
+		foreach(player in getplayers())
 		{
 			if(!isdefined(player.doa))
 			{
@@ -2093,7 +2111,7 @@ function function_8bf960cf(player)
 	level thread function_197694d8();
 	level util::waittill_any_timeout(time, "camera_changed", "doa_playerdumpFPS", "exit_taken", "host_migration_begin", "firstPersonForATime");
 	level.doa.var_2836c8ee = undefined;
-	foreach(var_9f62809c, player in getplayers())
+	foreach(player in getplayers())
 	{
 		player notify(#"hash_3b432f18");
 	}
@@ -2156,51 +2174,60 @@ function function_6b4a5f81(player)
 		var_28a41a34 = 0;
 		if(isdefined(player))
 		{
-			var_28a41a34 = 1 + player.entnum << 1;
+			var_28a41a34 = (1 + player.entnum) << 1;
 		}
 		val = var_28a41a34 + 1;
 		self clientfield::set("pickupmoveto", val);
 	}
-	else if(isdefined(player))
-	{
-		x = 2000;
-		y = 3000;
-		z = 1000;
-		if(level.doa.flipped)
-		{
-			x = 0 - x;
-			y = 0 - y;
-		}
-		end_pt = player.origin;
-		if(player.entnum == 0)
-		{
-		}
-		else if(player.entnum == 1)
-		{
-			y = 0 - y;
-		}
-		else if(player.entnum == 2)
-		{
-			x = 0 - x;
-		}
-		else if(player.entnum == 3)
-		{
-			y = 0 - y;
-			x = 0 - x;
-		}
-		end_pt = end_pt + (x, y, z);
-	}
 	else
 	{
-		end_pt = self.origin + vectorscale((0, 0, 1), 3000);
-	}
-	self notify(#"picked_up");
-	wait(0.05);
-	if(isdefined(self))
-	{
-		self function_fbc5b316();
-		self moveto(end_pt, 2, 0, 0);
-		wait(2);
+		if(isdefined(player))
+		{
+			x = 2000;
+			y = 3000;
+			z = 1000;
+			if(level.doa.flipped)
+			{
+				x = 0 - x;
+				y = 0 - y;
+			}
+			end_pt = player.origin;
+			if(player.entnum == 0)
+			{
+			}
+			else
+			{
+				if(player.entnum == 1)
+				{
+					y = 0 - y;
+				}
+				else
+				{
+					if(player.entnum == 2)
+					{
+						x = 0 - x;
+					}
+					else if(player.entnum == 3)
+					{
+						y = 0 - y;
+						x = 0 - x;
+					}
+				}
+			}
+			end_pt = end_pt + (x, y, z);
+		}
+		else
+		{
+			end_pt = self.origin + vectorscale((0, 0, 1), 3000);
+		}
+		self notify(#"picked_up");
+		wait(0.05);
+		if(isdefined(self))
+		{
+			self function_fbc5b316();
+			self moveto(end_pt, 2, 0, 0);
+			wait(2);
+		}
 	}
 	util::wait_network_frame();
 	if(isdefined(self.trigger))
@@ -2317,7 +2344,7 @@ function function_b3289e6d(scale)
 		{
 			scale = 16;
 		}
-		val = int(scale / 16 * 256 - 1);
+		val = int((scale / 16) * (256 - 1));
 		self clientfield::set("pickupscale", val);
 	}
 	else
@@ -2392,13 +2419,16 @@ function pickuptimeout()
 		{
 			[[self.var_71bbb00a]](i % 2);
 		}
-		else if(i % 2)
-		{
-			self function_32110b7d();
-		}
 		else
 		{
-			self function_fbc5b316();
+			if(i % 2)
+			{
+				self function_32110b7d();
+			}
+			else
+			{
+				self function_fbc5b316();
+			}
 		}
 		if(i < 15)
 		{
@@ -2477,7 +2507,7 @@ function function_80ed7f(popvec)
 		target_point = self.origin + popvec;
 	}
 	vel = target_point - self.origin;
-	self.origin = self.origin + 4 * vel;
+	self.origin = self.origin + (4 * vel);
 	vel = vel * randomfloatrange(0.5, 3);
 	self physicslaunch(self.origin, vel);
 	wait(1);
@@ -2517,13 +2547,13 @@ function private function_972fe17c()
 {
 	if(self.def.type == 23 || self.def.type == 36)
 	{
-		return 0;
+		return false;
 	}
 	if(self.def.type == 32)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2539,21 +2569,21 @@ function function_fd16eeab(type)
 {
 	if(type == 32)
 	{
-		return 1;
+		return true;
 	}
 	if(type == 5)
 	{
-		return 1;
+		return true;
 	}
 	if(type == 23 || type == 27 || type == 36)
 	{
-		return 1;
+		return true;
 	}
 	if(type == 26)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2569,28 +2599,28 @@ function private function_f56a2ab()
 {
 	if(self.def.type == 32)
 	{
-		return 1;
+		return true;
 	}
 	if(self.def.type == 5)
 	{
 		self thread namespace_5e6c5d1f::function_cdfa9ce8(self);
 		self.angles = (0, 0, 0);
-		return 1;
+		return true;
 	}
 	if(self.def.type == 23 || self.def.type == 27 || self.def.type == 36)
 	{
 		self thread namespace_5e6c5d1f::function_7b8c015c();
 		self.var_71bbb00a = &namespace_5e6c5d1f::function_d63bdb9;
-		return 1;
+		return true;
 	}
 	if(self.def.type == 26)
 	{
 		self clientfield::set("heartbeat", 1);
 		self.var_71bbb00a = &function_2e7c9798;
 		self hide();
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2615,7 +2645,7 @@ function private function_5441452b(maxdistsq)
 		{
 			if(self.origin[0] != self.var_18193c2a[0] || self.origin[1] != self.var_18193c2a[1])
 			{
-				trace = bullettrace(self.origin, self.origin + vectorscale((0, 0, -1), 500), 0, undefined);
+				trace = bullettrace(self.origin, self.origin + (vectorscale((0, 0, -1), 500)), 0, undefined);
 				self.groundpos = (self.origin[0], self.origin[1], trace["position"][2]) + vectorscale((0, 0, 1), 32);
 				self moveto(self.groundpos, 1);
 				self util::waittill_any_timeout(1.1, "movedone", "picked_up", "pickup_ForceAttractKill", "death");
@@ -2626,7 +2656,7 @@ function private function_5441452b(maxdistsq)
 		}
 		var_af22fa93 = (isdefined(self.var_af22fa93) ? self.var_af22fa93 : 10);
 		var_119472f5 = (isdefined(maxdistsq) ? maxdistsq : level.doa.rules.var_eb81beeb);
-		foreach(var_2fe1db4c, force in self.attractors)
+		foreach(force in self.attractors)
 		{
 			if(!isdefined(force))
 			{
@@ -2646,7 +2676,7 @@ function private function_5441452b(maxdistsq)
 				origin = force.origin;
 			}
 			var_ad2b0f07 = vectornormalize(origin - self.origin);
-			scale = var_119472f5 - distsq / var_119472f5;
+			scale = (var_119472f5 - distsq) / var_119472f5;
 			movevec = vectorscale(var_ad2b0f07, var_af22fa93 * scale);
 			self.origin = self.origin + movevec;
 			self.var_3033320e = 1;
@@ -2683,7 +2713,7 @@ function function_b33393b3()
 		}
 		if(function_295872fa(self))
 		{
-			foreach(var_49b2126d, player in namespace_831a4a7c::function_5eb6e4d1())
+			foreach(player in namespace_831a4a7c::function_5eb6e4d1())
 			{
 				if(!isdefined(player.doa.var_3df27425))
 				{
@@ -2696,7 +2726,7 @@ function function_b33393b3()
 				}
 			}
 		}
-		foreach(var_d902ed5e, hazard in level.doa.hazards)
+		foreach(hazard in level.doa.hazards)
 		{
 			if(!isdefined(hazard))
 			{
@@ -2728,13 +2758,13 @@ function function_295872fa(pickup)
 {
 	if(isdefined(pickup.def.uber) && pickup.def.uber)
 	{
-		return 0;
+		return false;
 	}
 	if(pickup.type == 1 || pickup.type == 10 || pickup.type == 12 || pickup.type == 32)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2748,7 +2778,7 @@ function function_295872fa(pickup)
 */
 function function_411355c0(type, player, origin)
 {
-	foreach(var_de52bf19, guardian in level.doa.var_af875fb7)
+	foreach(guardian in level.doa.var_af875fb7)
 	{
 		if(guardian.type == type)
 		{
@@ -2808,7 +2838,7 @@ function function_fce74a5f(heart)
 {
 	zombies = arraycombine(getaispeciesarray("axis", "human"), arraycombine(getaispeciesarray("axis", "zombie"), getaispeciesarray("axis", "dog"), 0, 0), 0, 0);
 	var_39339143 = 0;
-	foreach(var_e90f06a, mf in zombies)
+	foreach(mf in zombies)
 	{
 		if(!isdefined(mf))
 		{
@@ -2885,13 +2915,16 @@ function function_2e7c9798()
 		{
 			wait(0.5);
 		}
-		else if(i < 25)
-		{
-			wait(0.25);
-		}
 		else
 		{
-			wait(0.1);
+			if(i < 25)
+			{
+				wait(0.25);
+			}
+			else
+			{
+				wait(0.1);
+			}
 		}
 		util::wait_network_frame();
 	}
@@ -2918,7 +2951,7 @@ function function_2e7c9798()
 */
 function function_5c21c936()
 {
-	self.origin = self.origin + vectorscale((0, 0, -1), 12);
+	self.origin = self.origin + (vectorscale((0, 0, -1), 12));
 }
 
 /*
@@ -3035,7 +3068,7 @@ function function_a40895ab()
 function function_b62ed8c1()
 {
 	self.attractors = [];
-	foreach(var_ec0763a, player in namespace_831a4a7c::function_5eb6e4d1())
+	foreach(player in namespace_831a4a7c::function_5eb6e4d1())
 	{
 		distsq = distancesquared(player.origin, self.origin);
 		if(distsq < level.doa.rules.var_6a4387bb)

@@ -160,3 +160,15 @@ Arena Names and their index in the arena sequence:
 `Rooftops - "newworld" - 15`
 
 `Jungle - "boss" - 16`
+
+
+
+
+
+
+
+
+Tags: 
+
+`//THIS LINE IS FOR CHANGING ARENA TO THE NEXT ONE IN THE ARRAY`
+

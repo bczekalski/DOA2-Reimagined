@@ -127,7 +127,6 @@ function function_d3f117f9(doa, idx)
 	{
 		return;
 	}
-	
 	doa.score = 0;
 	doa.var_db3637c0 = 0;
 	doa.var_c4c3767e = 0;
@@ -193,12 +192,12 @@ function function_cdb6d911()
 	self endon(#"hash_cdb6d911");
 	while(true)
 	{
-		foreach(var_40ce22db, model in level.var_b9d30140)
+		foreach(model in level.var_b9d30140)
 		{
 			setuimodelvalue(getuimodel(model, "ribbon"), 0);
 		}
 		var_324ecf57 = level.var_29e6f519[0];
-		foreach(var_cae08306, doa in level.var_29e6f519)
+		foreach(doa in level.var_29e6f519)
 		{
 			if(doa.score > var_324ecf57.score)
 			{
@@ -228,20 +227,20 @@ function function_4d819138()
 	self endon(#"hash_4d819138");
 	while(true)
 	{
-		foreach(var_8cc4e06f, doa in level.var_29e6f519)
+		foreach(doa in level.var_29e6f519)
 		{
 			if(!isdefined(doa.player))
 			{
 				continue;
 			}
-			var_9c4a2a35 = doa.player.score + doa.var_db3637c0 * int(4000000);
+			var_9c4a2a35 = doa.player.score + (doa.var_db3637c0 * int(4000000));
 			delta = var_9c4a2a35 - doa.score;
 			if(delta > 0)
 			{
 				inc = 1;
 				frac = int(0.01 * delta);
 				units = int(frac / inc);
-				inc = inc + units * inc;
+				inc = inc + (units * inc);
 				doa.score = doa.score + inc;
 				if(doa.score > var_9c4a2a35)
 				{
@@ -275,7 +274,7 @@ function function_2c9a6a47()
 	while(true)
 	{
 		wait(0.016);
-		foreach(var_32495fea, doa in level.var_29e6f519)
+		foreach(doa in level.var_29e6f519)
 		{
 			setuimodelvalue(getuimodel(doa.ui_model, "respawn"), "");
 			if(isdefined(level.var_c8a4d758) && level.var_c8a4d758)
@@ -295,18 +294,18 @@ function function_2c9a6a47()
 				if(isdefined(doa.var_c86225b5) && doa.var_c86225b5)
 				{
 					setuimodelvalue(createuimodel(doa.ui_model, "name"), istring("DOA_RESPAWNING"));
-					val = "" + int(ceil(doa.var_c4c3767e * 60));
+					val = "" + (int(ceil(doa.var_c4c3767e * 60)));
 					setuimodelvalue(getuimodel(doa.ui_model, "respawn"), val);
 				}
 			}
 			if(isdefined(doa.player))
 			{
-				doa.lives = doa.player.headshots & 61440 >> 12;
-				doa.bombs = doa.player.headshots & 3840 >> 8;
-				doa.boosters = doa.player.headshots & 240 >> 4;
+				doa.lives = (doa.player.headshots & 61440) >> 12;
+				doa.bombs = (doa.player.headshots & 3840) >> 8;
+				doa.boosters = (doa.player.headshots & 240) >> 4;
 				doa.multiplier = doa.player.headshots & 15;
-				doa.var_c4c3767e = doa.player.downs >> 2 / 255;
-				doa.var_4d5a5848 = doa.player.revives >> 2 / 255;
+				doa.var_c4c3767e = (doa.player.downs >> 2) / 255;
+				doa.var_4d5a5848 = (doa.player.revives >> 2) / 255;
 				doa.var_4f0e30c = doa.player.downs & 3;
 				doa.var_c86225b5 = doa.player.assists & 1;
 				doa.var_db3637c0 = doa.player.assists >> 2;
@@ -518,8 +517,8 @@ function function_a08fe7c3(totaltime)
 		diff = endtime - curtime;
 		ratio = diff / totaltime;
 		r = 255 * ratio;
-		g = 255 * 1 - ratio;
-		rgb = r + " " + g + " 0";
+		g = 255 * (1 - ratio);
+		rgb = ((r + " ") + g) + " 0";
 		setuimodelvalue(getuimodel(level.var_7e2a814c, "grgb1"), rgb);
 		wait(0.016);
 	}

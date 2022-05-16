@@ -244,7 +244,7 @@ function function_1f8cb1fa()
 	Parameters: 4
 	Flags: Linked
 */
-function function_64bc2503(queue, flag, waitfunc, var_a6cc22d4 = 0)
+function function_64bc2503(&queue, flag, waitfunc, var_a6cc22d4 = 0)
 {
 	self endon(#"death");
 	if(!var_a6cc22d4)
@@ -255,7 +255,7 @@ function function_64bc2503(queue, flag, waitfunc, var_a6cc22d4 = 0)
 	if(queue.size >= 16)
 	{
 		/#
-			foreach(var_14aedbb, item in queue)
+			foreach(item in queue)
 			{
 				doa_utility::debugmsg("" + item);
 			}
@@ -377,17 +377,20 @@ function function_2fc7e62f(victim, damage, attacker, dir, smeansofdeath, weapon)
 	{
 		playfx(level._effect["impact_raygun1"], victim.origin + vectorscale((0, 0, 1), 40));
 	}
-	else if(weapon == level.doa.var_e30c10ec)
-	{
-		playfx(level._effect["impact_raygun2"], victim.origin + vectorscale((0, 0, 1), 40));
-		if(isdefined(attacker))
-		{
-			attacker notify(#"hash_21f7a743", victim);
-		}
-	}
 	else
 	{
-		playfx(level._effect["impact_raygun"], victim.origin + vectorscale((0, 0, 1), 40));
+		if(weapon == level.doa.var_e30c10ec)
+		{
+			playfx(level._effect["impact_raygun2"], victim.origin + vectorscale((0, 0, 1), 40));
+			if(isdefined(attacker))
+			{
+				attacker notify(#"hash_21f7a743", victim);
+			}
+		}
+		else
+		{
+			playfx(level._effect["impact_raygun"], victim.origin + vectorscale((0, 0, 1), 40));
+		}
 	}
 }
 
@@ -474,15 +477,18 @@ function function_2aa1c0b3(victim, damage, attacker, dir, smeansofdeath, weapon)
 		victim clientfield::set("burnType", 2);
 		victim.var_7aac5112 = 2;
 	}
-	else if(issubstr(weapon.name, "_2"))
-	{
-		victim clientfield::set("burnType", 3);
-		victim.var_7aac5112 = 3;
-	}
 	else
 	{
-		victim clientfield::set("burnType", 1);
-		victim.var_7aac5112 = 1;
+		if(issubstr(weapon.name, "_2"))
+		{
+			victim clientfield::set("burnType", 3);
+			victim.var_7aac5112 = 3;
+		}
+		else
+		{
+			victim clientfield::set("burnType", 1);
+			victim.var_7aac5112 = 1;
+		}
 	}
 	victim.burning = 1;
 	wait(0.05);
@@ -522,7 +528,7 @@ function function_32bcda58(var_7aac5112, attacker)
 	{
 		self dodamage(dmg, self.origin, attacker);
 		wait(0.3);
-		if(var_1b22f058 > 0 && self.var_a27665f9 % getdvarint("scr_doa_dot_burn_fx_rate", 30) == 0)
+		if(var_1b22f058 > 0 && (self.var_a27665f9 % getdvarint("scr_doa_dot_burn_fx_rate", 30)) == 0)
 		{
 			var_1b22f058--;
 			self clientfield::increment("burnZombie");

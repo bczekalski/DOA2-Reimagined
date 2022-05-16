@@ -68,7 +68,7 @@ function init()
 			level.doa.var_b1698a42.msgs[i].aligny = "middle";
 			level.doa.var_b1698a42.msgs[i].horzalign = "center";
 			level.doa.var_b1698a42.msgs[i].vertalign = "middle";
-			level.doa.var_b1698a42.msgs[i].y = level.doa.var_b1698a42.msgs[i].y - 80 - i * 20;
+			level.doa.var_b1698a42.msgs[i].y = level.doa.var_b1698a42.msgs[i].y - (80 - (i * 20));
 			level.doa.var_b1698a42.msgs[i].foreground = 1;
 			level.doa.var_b1698a42.msgs[i].fontscale = 2.5;
 			level.doa.var_b1698a42.msgs[i].color = (1, 0.2, 0);
@@ -89,7 +89,7 @@ function init()
 function private function_6162a853(var_26fc4461 = 0)
 {
 	level endon(#"hash_7b036079");
-	time_left = gettime() + level.doa.rules.fate_wait * 1000 + 10000;
+	time_left = (gettime() + (level.doa.rules.fate_wait * 1000)) + 10000;
 	diff = time_left - gettime();
 	var_4af4d74c = 0;
 	while(diff > 0)
@@ -181,8 +181,8 @@ function function_77ed1bae()
 	level.doa.fates_have_been_chosen = 0;
 	guardian = getent("temple_guardian", "targetname");
 	var_526b2f85 = getent("temple_guardian_clip", "targetname");
-	guardian.origin = guardian.origin + vectorscale((0, 0, -1), 1000);
-	var_526b2f85.origin = var_526b2f85.origin + vectorscale((0, 0, -1), 1000);
+	guardian.origin = guardian.origin + (vectorscale((0, 0, -1), 1000));
+	var_526b2f85.origin = var_526b2f85.origin + (vectorscale((0, 0, -1), 1000));
 	level thread doa_pickups::function_c1869ec8();
 	level thread doa_utility::clearallcorpses();
 	level thread namespace_d88e3a06::function_116bb43();
@@ -190,7 +190,7 @@ function function_77ed1bae()
 	locs = struct::get_array("fate_player_spawn", "targetname");
 	if(isdefined(locs) && locs.size == 4)
 	{
-		foreach(var_984e11ad, player in getplayers())
+		foreach(player in getplayers())
 		{
 			spot = locs[player.entnum];
 			player namespace_cdb9a8fe::function_fe0946ac(spot.origin);
@@ -212,7 +212,7 @@ function function_77ed1bae()
 		rock.var_e35d13 = loc.origin;
 		rock setmodel(level.doa.var_b1698a42.var_f485e213);
 		rock.angles = (0, type * 90, 0);
-		rock setscale(0.9 + type * 0.05);
+		rock setscale(0.9 + (type * 0.05));
 		trigger = spawn("trigger_radius", rock.origin, 0, loc.radius, 128);
 		trigger.targetname = "fateTrigger";
 		trigger.type = type;
@@ -361,7 +361,7 @@ function private function_271ba816(var_26fc4461 = 0)
 			{
 				avail = level.doa.var_b1698a42.types;
 				players = namespace_831a4a7c::function_5eb6e4d1();
-				foreach(var_10667fa1, player in players)
+				foreach(player in players)
 				{
 					if(player == guy)
 					{
@@ -402,81 +402,102 @@ function private function_271ba816(var_26fc4461 = 0)
 				guy awardfate(fate, self.rock);
 				self notify(#"hash_9075e98");
 			}
-			else if(isdefined(level.doa.var_aaefc0f3) && level.doa.var_aaefc0f3)
+			else
 			{
-				if(guy.doa.fate == 1)
+				if(isdefined(level.doa.var_aaefc0f3) && level.doa.var_aaefc0f3)
 				{
-					type = 10;
-				}
-				else if(guy.doa.fate == 2)
-				{
-					type = 11;
-				}
-				else if(guy.doa.fate == 3)
-				{
-					type = 12;
-				}
-				else if(guy.doa.fate == 4)
-				{
-					type = 13;
-				}
-				if(isdefined(type))
-				{
-					guy awardfate(type, self.rock);
-					self notify(#"hash_14fdf5a2");
+					if(guy.doa.fate == 1)
+					{
+						type = 10;
+					}
+					else
+					{
+						if(guy.doa.fate == 2)
+						{
+							type = 11;
+						}
+						else
+						{
+							if(guy.doa.fate == 3)
+							{
+								type = 12;
+							}
+							else if(guy.doa.fate == 4)
+							{
+								type = 13;
+							}
+						}
+					}
+					if(isdefined(type))
+					{
+						guy awardfate(type, self.rock);
+						self notify(#"hash_14fdf5a2");
+					}
+					else
+					{
+						self thread function_78f27983(guy);
+						self notify(#"hash_fad6c90b");
+					}
+					allfated = 1;
+					foreach(player in getplayers())
+					{
+						if(!isdefined(player.doa) || (!(isdefined(player.doa.var_2219ffc9) && player.doa.var_2219ffc9)))
+						{
+							allfated = 0;
+							break;
+						}
+					}
+					if(allfated)
+					{
+						level notify(#"hash_7b036079");
+					}
 				}
 				else
 				{
-					self thread function_78f27983(guy);
-					self notify(#"hash_fad6c90b");
-				}
-				allfated = 1;
-				foreach(var_d92b9f91, player in getplayers())
-				{
-					if(!isdefined(player.doa) || (!(isdefined(player.doa.var_2219ffc9) && player.doa.var_2219ffc9)))
+					if(self.type == 10 && guy.doa.fate == 1)
 					{
-						allfated = 0;
+						guy awardfate(self.type, self.rock);
+						self notify(#"hash_14fdf5a2");
+						level notify(#"hash_7b036079");
 						break;
 					}
+					else
+					{
+						if(self.type == 11 && guy.doa.fate == 2)
+						{
+							guy awardfate(self.type, self.rock);
+							self notify(#"hash_14fdf5a2");
+							level notify(#"hash_7b036079");
+							break;
+						}
+						else
+						{
+							if(self.type == 12 && guy.doa.fate == 3)
+							{
+								guy awardfate(self.type, self.rock);
+								self notify(#"hash_14fdf5a2");
+								level notify(#"hash_7b036079");
+								break;
+							}
+							else
+							{
+								if(self.type == 13 && guy.doa.fate == 4)
+								{
+									guy awardfate(self.type, self.rock);
+									self notify(#"hash_14fdf5a2");
+									level notify(#"hash_7b036079");
+									break;
+								}
+								else
+								{
+									self thread function_78f27983(guy);
+									self notify(#"hash_fad6c90b");
+									break;
+								}
+							}
+						}
+					}
 				}
-				if(allfated)
-				{
-					level notify(#"hash_7b036079");
-				}
-			}
-			else if(self.type == 10 && guy.doa.fate == 1)
-			{
-				guy awardfate(self.type, self.rock);
-				self notify(#"hash_14fdf5a2");
-				level notify(#"hash_7b036079");
-				break;
-			}
-			else if(self.type == 11 && guy.doa.fate == 2)
-			{
-				guy awardfate(self.type, self.rock);
-				self notify(#"hash_14fdf5a2");
-				level notify(#"hash_7b036079");
-				break;
-			}
-			else if(self.type == 12 && guy.doa.fate == 3)
-			{
-				guy awardfate(self.type, self.rock);
-				self notify(#"hash_14fdf5a2");
-				level notify(#"hash_7b036079");
-				break;
-			}
-			else if(self.type == 13 && guy.doa.fate == 4)
-			{
-				guy awardfate(self.type, self.rock);
-				self notify(#"hash_14fdf5a2");
-				level notify(#"hash_7b036079");
-				break;
-			}
-			else
-			{
-				self thread function_78f27983(guy);
-				self notify(#"hash_fad6c90b");
-				break;
 			}
 		}
 	}
@@ -812,7 +833,7 @@ function function_c631d045()
 {
 	var_de2c598 = undefined;
 	candidates = [];
-	foreach(var_66b77131, player in getplayers())
+	foreach(player in getplayers())
 	{
 		if(!isdefined(player.doa))
 		{
@@ -821,40 +842,40 @@ function function_c631d045()
 		if(player.doa.fate == 10)
 		{
 			/#
-				doa_utility::debugmsg("" + (isdefined(player.name) ? player.name : player getentitynumber()) + "");
+				doa_utility::debugmsg(("" + (isdefined(player.name) ? player.name : player getentitynumber())) + "");
 			#/
 			continue;
 		}
 		if(player.doa.fate == 11)
 		{
 			/#
-				doa_utility::debugmsg("" + (isdefined(player.name) ? player.name : player getentitynumber()) + "");
+				doa_utility::debugmsg(("" + (isdefined(player.name) ? player.name : player getentitynumber())) + "");
 			#/
 			continue;
 		}
 		if(player.doa.fate == 12)
 		{
 			/#
-				doa_utility::debugmsg("" + (isdefined(player.name) ? player.name : player getentitynumber()) + "");
+				doa_utility::debugmsg(("" + (isdefined(player.name) ? player.name : player getentitynumber())) + "");
 			#/
 			continue;
 		}
 		if(player.doa.fate == 13)
 		{
 			/#
-				doa_utility::debugmsg("" + (isdefined(player.name) ? player.name : player getentitynumber()) + "");
+				doa_utility::debugmsg(("" + (isdefined(player.name) ? player.name : player getentitynumber())) + "");
 			#/
 			continue;
 		}
 		candidates[candidates.size] = player;
 	}
-	foreach(var_865a8196, candidate in candidates)
+	foreach(candidate in candidates)
 	{
 		damage = (isdefined(candidate.doa.var_eb1cd159) ? candidate.doa.var_eb1cd159 : randomint(100));
 		karma = candidate.doa.var_faf30682 * 8000;
 		candidate.doa.var_e5be00e0 = damage + karma;
 		/#
-			doa_utility::debugmsg("" + (isdefined(candidate.name) ? candidate.name : candidate getentitynumber()) + "" + candidate.doa.var_e5be00e0);
+			doa_utility::debugmsg((("" + (isdefined(candidate.name) ? candidate.name : candidate getentitynumber())) + "") + candidate.doa.var_e5be00e0);
 			doa_utility::debugmsg("" + damage);
 			doa_utility::debugmsg("" + karma);
 		#/
@@ -886,8 +907,8 @@ function function_833dad0d()
 	level endon(#"hash_d1f5acf7");
 	guardian = getent("temple_guardian", "targetname");
 	var_526b2f85 = getent("temple_guardian_clip", "targetname");
-	guardian.origin = guardian.origin + vectorscale((0, 0, -1), 1000);
-	var_526b2f85.origin = var_526b2f85.origin + vectorscale((0, 0, -1), 1000);
+	guardian.origin = guardian.origin + (vectorscale((0, 0, -1), 1000));
+	var_526b2f85.origin = var_526b2f85.origin + (vectorscale((0, 0, -1), 1000));
 	level thread function_be1e2cfc(guardian, var_526b2f85);
 	level.doa.rules.max_enemy_count = 20;
 	level thread doa_pickups::function_c1869ec8();
@@ -947,11 +968,11 @@ function function_833dad0d()
 		return;
 	}
 	/#
-		doa_utility::debugmsg("" + (isdefined(var_de2c598.name) ? var_de2c598.name : var_de2c598 getentitynumber()) + "" + var_de2c598.doa.var_e5be00e0);
+		doa_utility::debugmsg((("" + (isdefined(var_de2c598.name) ? var_de2c598.name : var_de2c598 getentitynumber())) + "") + var_de2c598.doa.var_e5be00e0);
 	#/
 	for(i = 0; i < level.doa.var_b1698a42.var_9c35e18e.size; i++)
 	{
-		type = 10 + var_de2c598.doa.fate - 1;
+		type = (10 + var_de2c598.doa.fate) - 1;
 		loc = level.doa.var_b1698a42.var_70a33a0b[i];
 		rock = spawn("script_model", loc.origin + vectorscale((0, 0, 1), 2000));
 		rock.targetname = "doRoomOfJudgement";
@@ -972,7 +993,7 @@ function function_833dad0d()
 	locs = struct::get_array("fate_player_spawn", "targetname");
 	if(isdefined(locs) && locs.size == 4)
 	{
-		foreach(var_3a6ea531, player in getplayers())
+		foreach(player in getplayers())
 		{
 			spot = locs[player.entnum];
 			player namespace_cdb9a8fe::function_fe0946ac(spot.origin);
@@ -1000,7 +1021,7 @@ function function_833dad0d()
 	}
 	level notify(#"hash_4213cffb");
 	wait(4);
-	foreach(var_a69dd66, player in getplayers())
+	foreach(player in getplayers())
 	{
 		player freezecontrols(0);
 		player thread namespace_831a4a7c::function_4519b17(0);
@@ -1247,7 +1268,7 @@ function private function_4d69c061(org)
 		org delete();
 		return;
 	}
-	wait(12 - getplayers().size * 2);
+	wait(12 - (getplayers().size * 2));
 	shield = spawn("script_model", self.origin);
 	shield.targetname = "_shieldRegenerate";
 	shield.org = org;
@@ -1264,12 +1285,12 @@ function private function_4d69c061(org)
 	{
 		shield setmodel("veh_t7_drone_insanity_elemental");
 		shield.var_e34a8df9 = org.var_e34a8df9;
-		shield linkto(shield.org, "tag_origin", (0, 164 - org.regenerated * 8, 60), vectorscale((0, 0, 1), 180));
+		shield linkto(shield.org, "tag_origin", (0, 164 - (org.regenerated * 8), 60), vectorscale((0, 0, 1), 180));
 	}
 	else
 	{
 		shield setmodel("zombietron_boss_shield_full_size" + org.regenerated);
-		shield linkto(shield.org, "tag_origin", (0, 164 - org.regenerated * 8, 30), vectorscale((0, 0, 1), 180));
+		shield linkto(shield.org, "tag_origin", (0, 164 - (org.regenerated * 8), 30), vectorscale((0, 0, 1), 180));
 	}
 	shield thread function_b1d23a45(org.boss);
 	org.boss.shields[org.index] = shield;
@@ -1355,7 +1376,7 @@ function private function_cb98790d()
 	while(true)
 	{
 		level waittill(#"hash_8817f58");
-		foreach(var_9ee69e19, ball in self.shields)
+		foreach(ball in self.shields)
 		{
 			if(isdefined(ball))
 			{
@@ -1383,7 +1404,7 @@ function private function_cb98790d()
 function private function_c492e72d()
 {
 	level endon(#"hash_d1f5acf7");
-	self.health = doa_utility::clamp(level.doa.round_number * 20000 + getplayers().size * 250000, 250000, 2250000);
+	self.health = doa_utility::clamp((level.doa.round_number * 20000) + (getplayers().size * 250000), 250000, 2250000);
 	self.maxhealth = self.health;
 	self.boss = 1;
 	self.takedamage = 0;
@@ -1436,29 +1457,38 @@ function private function_c492e72d()
 			self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_damaged");
 			level notify(#"hash_55acdab7");
 		}
-		else if(lasthealth > stage2 && self.health < stage2)
+		else
 		{
-			self thread namespace_eaa992c::function_285a2999("stoneboss_dmg2");
-			self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_damaged");
-			level notify(#"hash_55acdab7");
-		}
-		else if(lasthealth > stage3 && self.health < stage3)
-		{
-			self thread namespace_eaa992c::function_285a2999("stoneboss_dmg3");
-			self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_damaged");
-			level notify(#"hash_55acdab7");
-		}
-		else if(lasthealth > var_301961e7 && self.health < var_301961e7)
-		{
-			self thread namespace_eaa992c::function_285a2999("stoneboss_dmg4");
-			self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_damaged");
-			level notify(#"hash_55acdab7");
-		}
-		else if(lasthealth > var_a16e77e && self.health < var_a16e77e)
-		{
-			self thread namespace_eaa992c::function_285a2999("stoneboss_dmg5");
-			self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_damaged");
-			level notify(#"hash_55acdab7");
+			if(lasthealth > stage2 && self.health < stage2)
+			{
+				self thread namespace_eaa992c::function_285a2999("stoneboss_dmg2");
+				self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_damaged");
+				level notify(#"hash_55acdab7");
+			}
+			else
+			{
+				if(lasthealth > stage3 && self.health < stage3)
+				{
+					self thread namespace_eaa992c::function_285a2999("stoneboss_dmg3");
+					self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_damaged");
+					level notify(#"hash_55acdab7");
+				}
+				else
+				{
+					if(lasthealth > var_301961e7 && self.health < var_301961e7)
+					{
+						self thread namespace_eaa992c::function_285a2999("stoneboss_dmg4");
+						self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_damaged");
+						level notify(#"hash_55acdab7");
+					}
+					else if(lasthealth > var_a16e77e && self.health < var_a16e77e)
+					{
+						self thread namespace_eaa992c::function_285a2999("stoneboss_dmg5");
+						self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_damaged");
+						level notify(#"hash_55acdab7");
+					}
+				}
+			}
 		}
 		/#
 			doa_utility::debugmsg("" + self.health);
@@ -1486,7 +1516,7 @@ function private function_ae21464b()
 	level endon(#"hash_cb54277d");
 	while(true)
 	{
-		wait(randomintrange(10, 20) - getplayers().size * 1.2);
+		wait(randomintrange(10, 20) - (getplayers().size * 1.2));
 		self thread namespace_1a381543::function_90118d8c("zmb_boss_sound_minion_summon");
 		level notify(#"hash_55acdab7");
 		/#
@@ -1642,7 +1672,7 @@ function function_3caf8e2(endtime)
 		{
 			continue;
 		}
-		steps = int(dist / stepsize + 0.5);
+		steps = int((dist / stepsize) + 0.5);
 		for(i = 0; i < steps; i++)
 		{
 			self thread function_69ae5d15(lastposition);
@@ -1688,7 +1718,7 @@ function private function_69ae5d15(loc)
 	variance = randomfloatrange(0, 3);
 	time = 10 + variance;
 	trigger thread doa_utility::function_1bd67aef(time);
-	timeleft = gettime() + time * 1000;
+	timeleft = gettime() + (time * 1000);
 	while(gettime() < timeleft)
 	{
 		wait(0.05);
@@ -1710,7 +1740,7 @@ function private function_69ae5d15(loc)
 			continue;
 		}
 		time = gettime();
-		if(isdefined(guy.var_4c8b5b70) && time - guy.var_4c8b5b70 < 1000)
+		if(isdefined(guy.var_4c8b5b70) && (time - guy.var_4c8b5b70) < 1000)
 		{
 			continue;
 		}

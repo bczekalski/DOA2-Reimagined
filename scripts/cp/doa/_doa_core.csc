@@ -171,7 +171,7 @@ function function_d5eb029a()
 	{
 		level waittill(#"hash_aae01d5a", playernum, newstate);
 		players = getplayers(0);
-		foreach(var_e6d1a490, player in players)
+		foreach(player in players)
 		{
 			if(!isdefined(player.entnum))
 			{
@@ -254,7 +254,7 @@ function function_ae0a4fc5()
 	while(true)
 	{
 		players = getplayers(0);
-		foreach(var_5474f216, player in players)
+		foreach(player in players)
 		{
 			if(isdefined(player.doa))
 			{
@@ -280,7 +280,7 @@ function function_ae0a4fc5()
 			if(isdefined(doa.player) && doa.player != player)
 			{
 				/#
-					debugmsg("" + player.name + "" + doa.player.name + "" + player getentitynumber() + "" + doa.player getentitynumber());
+					debugmsg(((((("" + player.name) + "") + doa.player.name) + "") + player getentitynumber() + "") + doa.player getentitynumber());
 				#/
 				continue;
 			}
@@ -378,7 +378,7 @@ function function_fc05827f(localclientnum)
 function function_2eaf8a3f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	/#
-		debugmsg("" + newval + "" + level.doa.roundnumber);
+		debugmsg((("" + newval) + "") + level.doa.roundnumber);
 	#/
 	if(newval)
 	{
@@ -481,9 +481,9 @@ function function_e63081e8(localclientnum, oldval, newval, bnewent, binitialsnap
 			stopradiantexploder(localclientnum, level.doa.var_6e0195ea);
 			level.doa.var_6e0195ea = undefined;
 		}
-		level.doa.var_6e0195ea = "fx_exploder_" + level.doa.arenas[level.doa.current_arena].name + "_FPS";
+		level.doa.var_6e0195ea = ("fx_exploder_" + level.doa.arenas[level.doa.current_arena].name) + "_FPS";
 		/#
-			debugmsg("" + level.doa.var_6e0195ea + "" + localclientnum);
+			debugmsg((("" + level.doa.var_6e0195ea) + "") + localclientnum);
 		#/
 		playradiantexploder(localclientnum, level.doa.var_6e0195ea);
 	}
@@ -686,12 +686,15 @@ function function_10093dd7(localclientnum, oldval, newval, bnewent, binitialsnap
 		players[0] camerasetposition(level.var_b62087b0.origin);
 		players[0] camerasetlookat(level.var_b62087b0.angles);
 	}
-	else if(isdefined(level.var_45fd31cd))
+	else
 	{
-		closeluimenu(localclientnum, level.var_45fd31cd);
-		level.var_45fd31cd = undefined;
+		if(isdefined(level.var_45fd31cd))
+		{
+			closeluimenu(localclientnum, level.var_45fd31cd);
+			level.var_45fd31cd = undefined;
+		}
+		level.var_b62087b0 = undefined;
 	}
-	level.var_b62087b0 = undefined;
 }
 
 /*
@@ -872,14 +875,14 @@ function function_9bf26aa6(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function onground()
 {
-	a_trace = bullettrace(self.origin, self.origin + vectorscale((0, 0, -1), 5000), 0, self, 1);
+	a_trace = bullettrace(self.origin, self.origin + (vectorscale((0, 0, -1), 5000)), 0, self, 1);
 	v_ground = a_trace["position"];
 	distance_squared = distancesquared(self.origin, v_ground);
 	if(distance_squared > 576)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -917,7 +920,7 @@ function function_10477d98(localclientnum)
 			{
 				continue;
 			}
-			steps = int(dist / stepsize + 0.5);
+			steps = int((dist / stepsize) + 0.5);
 			for(i = 0; i < steps; i++)
 			{
 				playfx(localclientnum, level._effect["fury_boost"], lastposition, anglestoforward(self.angles), (0, 0, 1));
@@ -967,7 +970,7 @@ function function_b868b40f(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_409fa9ce(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	/#
-		debugmsg("" + (isdefined(self.name) ? self.name : "") + "" + newval + "" + localclientnum);
+		debugmsg((((("" + (isdefined(self.name) ? self.name : "")) + "") + newval) + "") + localclientnum);
 	#/
 	if(newval)
 	{
@@ -1162,7 +1165,7 @@ function private function_38452435(localclientnum)
 function function_b54615b2()
 {
 	arrayremovevalue(level.doa.hazards, undefined);
-	foreach(var_146c2ac8, hazard in level.doa.hazards)
+	foreach(hazard in level.doa.hazards)
 	{
 		if(!isdefined(hazard))
 		{
@@ -1177,7 +1180,7 @@ function function_b54615b2()
 			continue;
 		}
 		distsq = distancesquared(hazard.origin, self.origin);
-		if(distsq < 72 * 72)
+		if(distsq < (72 * 72))
 		{
 			if(isdefined(hazard.activefx) && hazard.activefx == level._effect["electric_trap"])
 			{
@@ -1334,7 +1337,7 @@ function function_4ac9a8ba(localclientnum, oldval, newval, bnewent, binitialsnap
 	level.doa.roundnumber = 1;
 	level.doa.var_160ae6c6 = 1;
 	setuimodelvalue(getuimodel(level.var_7e2a814c, "level"), level.doa.var_160ae6c6);
-	foreach(var_209d81f0, player in getplayers(0))
+	foreach(player in getplayers(0))
 	{
 		player.doa = undefined;
 		player thread function_12c2fbcb();
@@ -1357,7 +1360,6 @@ function function_f7c0d598(mapping = "zombietron")
 	self endon(#"hash_f7c0d598");
 	self endon(#"entityshutdown");
 	self endon(#"disconnect");
-	
 	if(self islocalplayer())
 	{
 		clientnum = self getlocalclientnumber();
@@ -1366,7 +1368,12 @@ function function_f7c0d598(mapping = "zombietron")
 		#/
 		forcegamemodemappings(clientnum, mapping);
 	}
-	debugmsg("");
+	else
+	{
+		/#
+			debugmsg("");
+		#/
+	}
 }
 
 /*
@@ -1401,7 +1408,7 @@ function function_f87ff72d(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(isdefined(level.doa.var_2836c8ee) && level.doa.var_2836c8ee)
 	{
 		forward = anglestoforward(self.angles);
-		var_ec8a4984 = self.origin + forward * 100;
+		var_ec8a4984 = self.origin + (forward * 100);
 	}
 	else
 	{
@@ -1416,7 +1423,7 @@ function function_f87ff72d(localclientnum, oldval, newval, bnewent, binitialsnap
 	bomb waittill(#"movedone");
 	playsound(localclientnum, "zmb_nuke_impact", var_ec8a4984);
 	playfx(localclientnum, level._effect["bomb"], var_ec8a4984);
-	foreach(var_c68d4c29, player in getlocalplayers())
+	foreach(player in getlocalplayers())
 	{
 		player earthquake(1, 0.8, var_ec8a4984, 1000);
 	}
@@ -1461,7 +1468,7 @@ function function_ef1ad359(origin, count = 3, dir)
 	{
 		if(!isdefined(dir))
 		{
-			dir = level.var_ff8aba3b + (randomfloatrange(level.var_46418da4 * -1 - count, level.var_46418da4 + count), randomfloatrange(level.var_46418da4 * -1 - count, level.var_46418da4 + count), randomintrange(level.var_96344b03 * -1 - count, level.var_96344b03 + count)) * level.var_bd436f37;
+			dir = (level.var_ff8aba3b + (randomfloatrange((level.var_46418da4 * -1) - count, level.var_46418da4 + count), randomfloatrange((level.var_46418da4 * -1) - count, level.var_46418da4 + count), randomintrange((level.var_96344b03 * -1) - count, level.var_96344b03 + count))) * level.var_bd436f37;
 		}
 		model = level.var_e3119165[randomint(level.var_e3119165.size)];
 		launchorigin = origin + (randomintrange(-12, 12), randomintrange(-12, 12), randomintrange(-40, 12));
@@ -1607,7 +1614,7 @@ function zombie_wait_explode(localclientnum)
 		where = self.origin;
 	}
 	start = gettime();
-	while(gettime() - start < 2000)
+	while((gettime() - start) < 2000)
 	{
 		if(isdefined(self))
 		{
@@ -1650,7 +1657,7 @@ function function_36c61ba6(localclientnum, var_4faf5231 = 1, var_ad5de66e = 1)
 		while(currentscale < var_c316c8b8)
 		{
 			currentscale = currentscale + var_ba7af42;
-			var_ba7af42 = var_ba7af42 + var_fa7c415 * self.rate;
+			var_ba7af42 = var_ba7af42 + (var_fa7c415 * self.rate);
 			if(currentscale > var_c316c8b8)
 			{
 				currentscale = var_c316c8b8;
@@ -1665,7 +1672,7 @@ function function_36c61ba6(localclientnum, var_4faf5231 = 1, var_ad5de66e = 1)
 		while(currentscale > var_ad5de66e)
 		{
 			currentscale = currentscale - var_ba7af42;
-			var_ba7af42 = var_ba7af42 - var_fa7c415 * self.rate;
+			var_ba7af42 = var_ba7af42 - (var_fa7c415 * self.rate);
 			if(var_ba7af42 < 0.0125)
 			{
 				var_ba7af42 = 0.0125;
@@ -1681,8 +1688,8 @@ function function_36c61ba6(localclientnum, var_4faf5231 = 1, var_ad5de66e = 1)
 			}
 			wait(0.016);
 		}
-		self rotateto(baseangles, 0.6 - self.rate / 10);
-		wait(0.6 - self.rate / 10);
+		self rotateto(baseangles, 0.6 - (self.rate / 10));
+		wait(0.6 - (self.rate / 10));
 	}
 }
 
@@ -1808,7 +1815,7 @@ function function_ddbc17b4(localclientnum, var_bac17ccf, var_2ca34dda)
 	{
 		return var_2ca34dda;
 	}
-	if(level.doa.arenas[level.doa.current_arena].var_dd94482c & 1 << var_bac17ccf)
+	if(level.doa.arenas[level.doa.current_arena].var_dd94482c & (1 << var_bac17ccf))
 	{
 		return var_bac17ccf;
 	}
@@ -1867,7 +1874,7 @@ function changecamera(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 		}
 	}
 	/#
-		debugmsg("" + self getentitynumber() + "" + self.var_44509e49);
+		debugmsg((("" + self getentitynumber()) + "") + self.var_44509e49);
 	#/
 }
 
@@ -2027,11 +2034,12 @@ function function_12c2fbcb()
 		self.doa = level.var_29e6f519[self.entnum];
 		if(isdefined(self.doa.player))
 		{
-		
+			/#
+				assert(self.doa.player == self);
+			#/
 		}
 		namespace_64c6b720::function_e06716c7(self.doa);
 		self.doa.player = self;
-		
 		self cameraforcedisablescriptcam(0);
 		self camerasetupdatecallback(&namespace_ad544aeb::function_d207ecc1);
 		setdvar("vr_playerScale", 30);
@@ -2086,44 +2094,44 @@ function function_c33d3992(localclientnum)
 	if(!clienthassnapshot(localclientnum))
 	{
 		/#
-			debugmsg("" + (isdefined(self.name) ? self.name : "") + "");
+			debugmsg(("" + (isdefined(self.name) ? self.name : "")) + "");
 		#/
-		return 0;
+		return false;
 	}
 	if(!self isplayer())
 	{
 		/#
-			debugmsg("" + (isdefined(self.name) ? self.name : "") + "");
+			debugmsg(("" + (isdefined(self.name) ? self.name : "")) + "");
 		#/
-		return 0;
+		return false;
 	}
 	if(!self hasdobj(localclientnum))
 	{
 		/#
-			debugmsg("" + (isdefined(self.name) ? self.name : "") + "");
+			debugmsg(("" + (isdefined(self.name) ? self.name : "")) + "");
 		#/
-		return 0;
+		return false;
 	}
 	if(self islocalplayer() && !isdefined(self getlocalclientnumber()))
 	{
 		/#
-			debugmsg("" + (isdefined(self.name) ? self.name : "") + "");
+			debugmsg(("" + (isdefined(self.name) ? self.name : "")) + "");
 		#/
-		return 0;
+		return false;
 	}
 	if(isspectating(localclientnum))
 	{
 		/#
-			debugmsg("" + (isdefined(self.name) ? self.name : "") + "");
+			debugmsg(("" + (isdefined(self.name) ? self.name : "")) + "");
 		#/
-		return 0;
+		return false;
 	}
 	if(isdemoplaying())
 	{
 		/#
-			debugmsg("" + (isdefined(self.name) ? self.name : "") + "");
+			debugmsg(("" + (isdefined(self.name) ? self.name : "")) + "");
 		#/
-		return 0;
+		return false;
 	}
 	if(self islocalplayer() && isdefined(self getlocalclientnumber()))
 	{
@@ -2131,20 +2139,20 @@ function function_c33d3992(localclientnum)
 		if(self != spectated)
 		{
 			/#
-				debugmsg("" + (isdefined(self.name) ? self.name : "") + "");
+				debugmsg(("" + (isdefined(self.name) ? self.name : "")) + "");
 			#/
-			return 0;
+			return false;
 		}
 	}
 	doa = level.var_29e6f519[self getentitynumber()];
 	if(isdefined(doa.player) && doa.player != self)
 	{
 		/#
-			debugmsg("" + (isdefined(self.name) ? self.name : "") + "" + doa.player.name + "" + self getentitynumber() + "" + doa.player getentitynumber());
+			debugmsg(((((("" + (isdefined(self.name) ? self.name : "")) + "") + doa.player.name) + "") + self getentitynumber() + "") + doa.player getentitynumber());
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2162,14 +2170,14 @@ function function_5c2a88d5()
 	while(true)
 	{
 		setsoundcontext("water", "over");
-		foreach(var_e06199f2, player in getlocalplayers())
+		foreach(player in getlocalplayers())
 		{
 			player setsoundentcontext("water", "over");
 		}
 		level waittill(#"hash_c4c783f9");
 		forceambientroom("cp_doa_fps_mode");
 		setsoundcontext("water", "under");
-		foreach(var_eb5d91b8, player in getlocalplayers())
+		foreach(player in getlocalplayers())
 		{
 			player setsoundentcontext("water", "under");
 		}
@@ -2198,8 +2206,8 @@ function drawcylinder(pos, rad, height, frames = 60, color = (0, 0, 0))
 		{
 			for(r = 0; r < 20; r++)
 			{
-				theta = r / 20 * 360;
-				theta2 = r + 1 / 20 * 360;
+				theta = (r / 20) * 360;
+				theta2 = ((r + 1) / 20) * 360;
 				line(pos + (cos(theta) * currad, sin(theta) * currad, 0), pos + (cos(theta2) * currad, sin(theta2) * currad, 0), color);
 				line(pos + (cos(theta) * currad, sin(theta) * currad, curheight), pos + (cos(theta2) * currad, sin(theta2) * currad, curheight), color);
 				line(pos + (cos(theta) * currad, sin(theta) * currad, 0), pos + (cos(theta) * currad, sin(theta) * currad, curheight), color);

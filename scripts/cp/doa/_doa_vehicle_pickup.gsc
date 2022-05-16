@@ -205,7 +205,7 @@ function function_ee6962d9(player, chicken)
 		{
 			continue;
 		}
-		spot = chicken gettagorigin("tail") + vectorscale((0, 0, -1), 32);
+		spot = chicken gettagorigin("tail") + (vectorscale((0, 0, -1), 32));
 		chicken thread namespace_1a381543::function_90118d8c("zmb_golden_chicken_pop");
 		level doa_pickups::function_3238133b(level.doa.var_43922ff2, spot, 1);
 	}
@@ -568,7 +568,7 @@ function function_3b1b644d(var_85f85940, vehicle)
 	spot = self doa_utility::function_5bca1086();
 	if(isdefined(spot))
 	{
-		trace = bullettrace(spot + vectorscale((0, 0, 1), 48), spot + vectorscale((0, 0, -1), 64), 0, undefined);
+		trace = bullettrace(spot + vectorscale((0, 0, 1), 48), spot + (vectorscale((0, 0, -1), 64)), 0, undefined);
 		spot = trace["position"];
 		self setorigin(spot);
 	}
@@ -607,7 +607,7 @@ function function_cdfa9ce8(bird)
 	bird notify(#"hash_cf62504");
 	bird endon(#"hash_cf62504");
 	bird endon(#"death");
-	bird useanimtree(&chicken_mech);
+	bird useanimtree("chicken_mech");
 	bird.animation = (randomint(2) ? %chicken_mech::a_chicken_mech_idle : %chicken_mech::a_chicken_mech_lay_egg);
 	while(isdefined(bird))
 	{

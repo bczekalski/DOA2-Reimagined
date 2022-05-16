@@ -744,12 +744,12 @@ function function_53bcdb30()
 	level.doa.rules = spawnstruct();
 	level.doa.rules.var_812a15ac = 1;
 	level.doa.rules.var_ec21c11e = 2;
-	level.doa.rules.var_1a69346e = 3;
+	level.doa.rules.var_1a69346e = 5;
 	level.doa.rules.max_lives = 9;
 	level.doa.rules.max_bombs = 9;
 	level.doa.rules.var_376b21db = 9;
 	level.doa.rules.max_multiplier = 9;
-	level.doa.rules.default_weapon = "zombietron_lmg";
+	level.doa.rules.default_weapon = "zombietron_ray_gun_2";
 	level.doa.rules.var_61b88ecb = 200000;
 	level.doa.rules.powerup_timeout = 10;
 	level.doa.rules.var_f5a9d2d9 = 10;
@@ -771,7 +771,7 @@ function function_53bcdb30()
 	level.doa.rules.var_187f2874 = 256;
 	level.doa.rules.var_92fcc00c = level.doa.rules.var_187f2874 * level.doa.rules.var_187f2874;
 	level.doa.var_b351e5fb = 0;
-	level.doa.rules.max_enemy_count = 40;
+	level.doa.rules.max_enemy_count = 70;
 	level.doa.rules.var_f53cdb6e = 20;
 	level.doa.rules.var_6a4387bb = 160 * 160;
 	level.doa.rules.var_109b458d = 120;
@@ -823,7 +823,7 @@ function function_53bcdb30()
 	level.doa.rules.var_6e5d36ba = 300;
 	level.doa.rules.var_3210f224 = 2;
 	level.doa.var_f953d785 = [];
-	level.doa.zombie_move_speed = level.doa.rules.var_e626be31;
+	level.doa.zombie_move_speed = 100;//level.doa.rules.var_e626be31;
 	level.doa.zombie_health = level.doa.rules.var_6fa02512;
 	level.doa.var_5bd7f25a = level.doa.rules.var_72d934b2;
 	level.doa.var_c9e1c854 = 2;

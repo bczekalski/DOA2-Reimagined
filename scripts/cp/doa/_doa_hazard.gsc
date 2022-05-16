@@ -188,7 +188,7 @@ function function_7b02a267()
 					locs = function_a4d53f1f(var_1ab7e3a5.type);
 					if(isdefined(locs))
 					{
-						foreach(var_ef795c4e, loc in locs)
+						foreach(loc in locs)
 						{
 							radius = (isdefined(var_1ab7e3a5.radius) ? var_1ab7e3a5.radius : 85);
 							if(isdefined(loc.radius))
@@ -224,7 +224,7 @@ function function_7a8a936b()
 	for(i = 0; i < level.doa.var_6a7fa24c.size; i++)
 	{
 		var_1ab7e3a5 = level.doa.var_6a7fa24c[i];
-		cluster_count = math::clamp(1 + randomint(2 + int(level.doa.round_number - 4 / 5)), 1, 20);
+		cluster_count = math::clamp(1 + (randomint(2 + (int((level.doa.round_number - 4) / 5)))), 1, 20);
 		if(getdvarint("scr_doa_max_poles", 0))
 		{
 			cluster_count = 20;
@@ -310,7 +310,7 @@ function function_7a8a936b()
 */
 function private _rotatevec(vector, angle)
 {
-	return (vector[0] * cos(angle) - vector[1] * sin(angle), vector[0] * sin(angle) + vector[1] * cos(angle), vector[2]);
+	return ((vector[0] * cos(angle)) - (vector[1] * sin(angle)), (vector[0] * sin(angle)) + (vector[1] * cos(angle)), vector[2]);
 }
 
 /*
@@ -630,14 +630,14 @@ function function_3341776e(origin, var_891d7d80 = origin, var_ba2a535c = 85)
 					{
 						dir = dir * -1;
 					}
-					origin = origin + dir * min_dist;
+					origin = origin + (dir * min_dist);
 					pushed = 1;
 				}
 			}
 		}
 	}
 	dist_squared = distancesquared(origin, var_891d7d80);
-	if(dist_squared > var_ba2a535c * var_ba2a535c)
+	if(dist_squared > (var_ba2a535c * var_ba2a535c))
 	{
 		return undefined;
 	}
@@ -888,7 +888,7 @@ function function_d8d20160()
 				damage = int(max(self.health * 0.5, damage));
 			}
 			/#
-				doa_utility::debugmsg("" + damage + "" + meansofdeath + "" + self.health);
+				doa_utility::debugmsg((((("" + damage) + "") + meansofdeath) + "") + self.health);
 			#/
 			lasthealth = self.health;
 			self.health = self.health - damage;
@@ -954,7 +954,7 @@ function private function_441547f1()
 				continue;
 			}
 			distsq = distance2dsquared(pickup.origin, var_f3646f56);
-			if(distsq > 12 * 12)
+			if(distsq > (12 * 12))
 			{
 				continue;
 			}
@@ -976,7 +976,7 @@ function private function_441547f1()
 function function_ffe39afe()
 {
 	count = 0;
-	foreach(var_cb3a66df, hazard in level.doa.hazards)
+	foreach(hazard in level.doa.hazards)
 	{
 		if(isdefined(hazard) && (isdefined(hazard.trashcan) && hazard.trashcan))
 		{
@@ -999,24 +999,24 @@ function function_cda60edb()
 {
 	if(level.doa.round_number < level.doa.rules.var_8c016b75)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.doa.var_932f9d4d))
 	{
-		return 1;
+		return true;
 	}
 	if(function_ffe39afe() >= level.doa.rules.var_3210f224)
 	{
-		return 0;
+		return false;
 	}
-	if(gettime() - level.doa.var_932f9d4d > level.doa.rules.var_6e5d36ba * 1000)
+	if((gettime() - level.doa.var_932f9d4d) > (level.doa.rules.var_6e5d36ba * 1000))
 	{
-		return 1;
+		return true;
 	}
 	if(randomint(level.doa.rules.var_d82df3d5) > level.doa.rules.var_4a5eec4)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 

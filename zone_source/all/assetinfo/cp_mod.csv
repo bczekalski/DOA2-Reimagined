@@ -1,6 +1,10 @@
 index,type,name,resident,streamed,parentStack
 1,string,,0,0,||assetlist
-2,rawfile,dummy.cfg,17,0,|zone_source/cp_mod.zone|csv
-3,scriptparsetree,scripts/cp/doa/_doa_core.gsc,33264,0,|zone_source/cp_mod.zone|csv
-4,keyvaluepairs,cp_mod,1114,0,||assetlist
-5,assetlist,,48,0,
+2,scriptparsetree,scripts/cp/doa/_doa_arena.csc,14329,0,|zone_source/cp_mod.zone|csv
+3,scriptparsetree,scripts/cp/doa/_doa_arena.gsc,30914,0,|zone_source/cp_mod.zone|csv
+4,scriptparsetree,scripts/cp/doa/_doa_chicken_pickup.gsc,17982,0,|zone_source/cp_mod.zone|csv
+5,scriptparsetree,scripts/cp/doa/_doa_core.gsc,33212,0,|zone_source/cp_mod.zone|csv
+6,scriptparsetree,scripts/cp/doa/_doa_round.gsc,14978,0,|zone_source/cp_mod.zone|csv
+7,scriptparsetree,scripts/cp/doa/_doa_utility.gsc,20280,0,|zone_source/cp_mod.zone|csv
+8,keyvaluepairs,cp_mod,1116,0,||assetlist
+9,assetlist,,112,0,

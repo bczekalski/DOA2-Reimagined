@@ -49,7 +49,7 @@ function function_c4e6a6fb(startscale, var_870d9a2 = 1, timems = 3000)
 {
 	self endon(#"death");
 	curscale = startscale;
-	var_aa32d9f9 = var_870d9a2 - startscale / timems / 50;
+	var_aa32d9f9 = (var_870d9a2 - startscale) / (timems / 50);
 	endtime = gettime() + timems;
 	while(isdefined(self) && gettime() < endtime)
 	{
@@ -70,7 +70,7 @@ function function_c4e6a6fb(startscale, var_870d9a2 = 1, timems = 3000)
 */
 function function_ca06d008(player, origin)
 {
-	hitp = playerphysicstrace(origin + vectorscale((0, 0, 1), 72), origin + vectorscale((0, 0, -1), 500));
+	hitp = playerphysicstrace(origin + vectorscale((0, 0, 1), 72), origin + (vectorscale((0, 0, -1), 500)));
 	origin = (origin[0], origin[1], hitp[2]);
 	org = spawn("script_model", origin + vectorscale((0, 0, 1), 36));
 	org setmodel("tag_origin");
@@ -210,7 +210,7 @@ function private function_770e1327(trigger)
 */
 function timeshifterupdate(player, origin)
 {
-	hitp = playerphysicstrace(origin + vectorscale((0, 0, 1), 72), origin + vectorscale((0, 0, -1), 500));
+	hitp = playerphysicstrace(origin + vectorscale((0, 0, 1), 72), origin + (vectorscale((0, 0, -1), 500)));
 	origin = (origin[0], origin[1], hitp[2]);
 	mark = origin + vectorscale((0, 0, 1), 28);
 	clock = spawn("script_model", origin);
@@ -351,7 +351,7 @@ function function_d171e15a(player, origin)
 */
 function function_159bb1dd(player, origin)
 {
-	hitp = playerphysicstrace(origin + vectorscale((0, 0, 1), 72), origin + vectorscale((0, 0, -1), 500));
+	hitp = playerphysicstrace(origin + vectorscale((0, 0, 1), 72), origin + (vectorscale((0, 0, -1), 500)));
 	origin = (origin[0], origin[1], hitp[2]);
 	mark = origin + vectorscale((0, 0, 1), 12);
 	monkey = spawn("script_model", origin);
@@ -359,7 +359,7 @@ function function_159bb1dd(player, origin)
 	monkey setmodel(level.doa.var_d6256e83);
 	monkey thread namespace_eaa992c::function_285a2999(namespace_831a4a7c::function_e7e0aa7f(player.entnum));
 	def = doa_pickups::function_bac08508(11);
-	monkey useanimtree(&zombie_cymbal_monkey);
+	monkey useanimtree("zombie_cymbal_monkey");
 	monkey animscripted("anim", monkey.origin, monkey.angles, %zombie_cymbal_monkey::o_monkey_bomb);
 	monkey.angles = (0, randomint(360), 0);
 	monkey makesentient();
