@@ -1075,7 +1075,7 @@ function function_78c7b56e(cheat = 0)
 	//else
 	if (level.doa.current_arena == 0)
 	{
-		function_5af67667(level.doa.current_arena + 8); //THIS LINE IS FOR CHANGING ARENA TO THE NEXT ONE IN THE ARRAY
+		function_5af67667(level.doa.current_arena + 8); //THIS LINE IS FOR SKIPPING STRAIGHT TO CHINA 4
 		level.doa.round_number = 225;
 		r = 225;
 		level.doa.var_da96f13c = 3;
@@ -1471,6 +1471,13 @@ function function_f64e4b70(specific)
 			getplayers()[i] thread doa_fate::awardfate(13);
 		}
 		level.doa.fatetesting = 1;
+		for(i = 0; i < level.doa.var_5a609640.size; i++){
+			temp = level.doa.var_5a609640[i];
+			if (temp == 37){
+				continue;
+			}
+			level.doa.var_f5e35752[level.doa.var_f5e35752.size] = temp;
+		}
 		/*for(i = 0; i < level.doa.var_5a609640.size; i++)
 	{
 		if(level.doa.var_5a609640[i].round == round)

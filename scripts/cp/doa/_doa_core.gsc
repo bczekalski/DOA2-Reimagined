@@ -752,7 +752,7 @@ function function_53bcdb30()
 	level.doa.rules.max_bombs = 9;
 	level.doa.rules.var_376b21db = 9;
 	level.doa.rules.max_multiplier = 9;
-	level.doa.rules.default_weapon = "zombietron_ray_gun_2";
+	level.doa.rules.default_weapon = "zombietron_lmg";
 	level.doa.rules.var_61b88ecb = 200000;
 	level.doa.rules.powerup_timeout = 10;
 	level.doa.rules.var_f5a9d2d9 = 10;
@@ -850,9 +850,6 @@ function function_53bcdb30()
 	Parameters: 0
 	Flags: Linked
 
-	for(i = 0; i < level.doa.var_5a609640.size; i++){
-		level.doa.var_f5e35752[level.doa.var_f5e35752.size] = level.doa.var_5a609640[i];
-	}
 */
 function function_53b7b84f()
 {

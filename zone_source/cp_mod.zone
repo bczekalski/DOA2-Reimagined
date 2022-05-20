@@ -12,7 +12,7 @@ scriptparsetree,scripts/cp/doa/_doa_arena.csc
 scriptparsetree,scripts/cp/doa/_doa_arena.gsc
 // scriptparsetree,scripts/cp/doa/_doa_audio.gsc
 // scriptparsetree,scripts/cp/doa/_doa_camera.csc
-scriptparsetree,scripts/cp/doa/_doa_chicken_pickup.gsc
+//scriptparsetree,scripts/cp/doa/_doa_chicken_pickup.gsc
 // scriptparsetree,scripts/cp/doa/_doa_core.csc
 scriptparsetree,scripts/cp/doa/_doa_core.gsc
 // scriptparsetree,scripts/cp/doa/_doa_dev.gsc
