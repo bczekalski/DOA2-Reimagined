@@ -56,7 +56,7 @@ function main()
 		wait(0.05);
 	}
 	level.var_de693c3 = 1;
-	foreach(var_1db7f1c8, player in getplayers())
+	foreach(player in getplayers())
 	{
 		player.hotjoin = undefined;
 	}
@@ -109,10 +109,10 @@ function private _load()
 			}
 		}
 		/#
-			doa_utility::debugmsg("" + getnumconnectedplayers() + "" + getnumexpectedplayers() + "" + var_a349db66);
+			doa_utility::debugmsg(((("" + getnumconnectedplayers()) + "") + getnumexpectedplayers() + "") + var_a349db66);
 		#/
 	}
-	while(var_f862b7b1 < var_91f98264 && player_count_actual + var_a349db66 < var_91f98264);
+	while(var_f862b7b1 < var_91f98264 && (player_count_actual + var_a349db66) < var_91f98264);
 	setinitialplayersconnected();
 	level flag::set("all_players_connected");
 	setdvar("all_players_are_connected", "1");
@@ -286,7 +286,7 @@ function on_player_connect()
 */
 function initialblack(time = 12)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	self openmenu("InitialBlack");
 	self util::waittill_any_timeout(time, "killInitialBlack", "disconnect");
 	if(isdefined(self))
@@ -333,8 +333,8 @@ function function_57863b20()
 	self endon(#"hash_57863b20");
 	while(true)
 	{
-		level waittill(#"host_migration_begin");
-		level waittill(#"host_migration_end");
+		level waittill("host_migration_begin");
+		level waittill("host_migration_end");
 		namespace_2f63e553::setupdevgui();
 		if(isdefined(level.doa.var_52cccfb6))
 		{
@@ -361,7 +361,7 @@ function function_437a340d(var_73419762)
 	{
 		return;
 	}
-	foreach(var_a8706945, player in getplayers())
+	foreach(player in getplayers())
 	{
 		if(!isdefined(player))
 		{
@@ -385,7 +385,7 @@ function function_437a340d(var_73419762)
 		doa_utility::function_11f3f381(self.var_4777f621, 1);
 	}
 	self notify(#"hash_437a340d");
-	self endon(#"disconnect");
+	self endon("disconnect");
 	self endon(#"hash_437a340d");
 	self.var_744a3931 = self openluimenu("DOA_PlayerReady");
 	currentround = level.doa.round_number;
@@ -396,12 +396,12 @@ function function_437a340d(var_73419762)
 		self.ignoreme = 1;
 		self freezecontrols(1);
 		self thread doa_utility::notifymeinnsec("menuresponse", 2, "menuresponse", "notarealmenu", "notarealresponse");
-		self waittill(#"menuresponse", menu, response);
+		self waittill("menuresponse", menu, response);
 		/#
-			doa_utility::debugmsg("" + menu + "" + response);
+			doa_utility::debugmsg((("" + menu) + "") + response);
 		#/
 		var_682b9faa = gettime();
-		if(var_682b9faa - timestart > 3 * 60000)
+		if((var_682b9faa - timestart) > (3 * 60000))
 		{
 			break;
 		}
@@ -422,8 +422,10 @@ function function_437a340d(var_73419762)
 	self freezecontrols(0);
 	self.takedamage = 1;
 	self.ignoreme = 0;
+	//level thread doa_fate::function_17fb777b(self, "zombietron_statue_force", 1, &doa_fate::function_c8508847);
 	self thread namespace_831a4a7c::turnplayershieldon();
 	self thread namespace_831a4a7c::function_b5843d4f(level.doa.arena_round_number == 3);
+	//doa_fate::function_77ed1bae();
 	self.hotjoin = undefined;
 	self notify(#"hash_437a340d");
 	self.doa.var_80ffe475 = var_73419762;
@@ -448,7 +450,7 @@ function on_player_spawned()
 	self namespace_831a4a7c::function_7d7a7fde();
 	self namespace_831a4a7c::function_60123d1c();
 	self util::set_lighting_state();
-	self notify(#"give_achievement", "CP_UNLOCK_DOA");
+	self notify("give_achievement", "CP_UNLOCK_DOA");
 	var_9774756a = 0;
 	if(isdefined(level.doa.var_e6653624))
 	{
@@ -459,7 +461,7 @@ function on_player_spawned()
 		}
 		else if(isdefined(level.doa.var_a9ba4ffb[self.name]))
 		{
-			if(gettime() - level.doa.var_a9ba4ffb[self.name] <= 5 * 60000)
+			if((gettime() - level.doa.var_a9ba4ffb[self.name]) <= (5 * 60000))
 			{
 				var_9774756a = 1;
 			}
@@ -579,6 +581,7 @@ function init()
 function function_c7f824a()
 {
 	level.doa.round_number = 1;
+	level.doa.fatetesting = undefined;
 	level.doa.arena_round_number = 0;
 	level.doa.var_b351e5fb = 0;
 	level.doa.total_kills = 0;
@@ -601,8 +604,8 @@ function function_c7f824a()
 	level.doa.var_d0cde02c = undefined;
 	level.doa.var_bc9b7c71 = &namespace_cdb9a8fe::function_fe0946ac;
 	level.doa.var_c061227e = 1;
-	level.doa.zombie_move_speed = level.doa.rules.var_e626be31;
-	level.doa.zombie_health = level.doa.rules.var_6fa02512;
+	//level.doa.zombie_move_speed = level.doa.rules.var_e626be31;
+	//level.doa.zombie_health = level.doa.rules.var_6fa02512;
 	level.doa.var_5bd7f25a = level.doa.rules.var_72d934b2;
 	level.doa.var_9a1cbf58 = 1;
 	level.doa.var_7808fc8c = [];
@@ -742,9 +745,9 @@ function function_53bcdb30()
 		assert(!isdefined(level.doa.rules));
 	#/
 	level.doa.rules = spawnstruct();
-	level.doa.rules.var_812a15ac = 1;
-	level.doa.rules.var_ec21c11e = 2;
-	level.doa.rules.var_1a69346e = 5;
+	level.doa.rules.var_812a15ac = 9;
+	level.doa.rules.var_ec21c11e = 9;
+	level.doa.rules.var_1a69346e = 9;
 	level.doa.rules.max_lives = 9;
 	level.doa.rules.max_bombs = 9;
 	level.doa.rules.var_376b21db = 9;
@@ -771,7 +774,7 @@ function function_53bcdb30()
 	level.doa.rules.var_187f2874 = 256;
 	level.doa.rules.var_92fcc00c = level.doa.rules.var_187f2874 * level.doa.rules.var_187f2874;
 	level.doa.var_b351e5fb = 0;
-	level.doa.rules.max_enemy_count = 70;
+	level.doa.rules.max_enemy_count = 40;
 	level.doa.rules.var_f53cdb6e = 20;
 	level.doa.rules.var_6a4387bb = 160 * 160;
 	level.doa.rules.var_109b458d = 120;
@@ -823,7 +826,7 @@ function function_53bcdb30()
 	level.doa.rules.var_6e5d36ba = 300;
 	level.doa.rules.var_3210f224 = 2;
 	level.doa.var_f953d785 = [];
-	level.doa.zombie_move_speed = 100;//level.doa.rules.var_e626be31;
+	level.doa.zombie_move_speed = level.doa.rules.var_e626be31;
 	level.doa.zombie_health = level.doa.rules.var_6fa02512;
 	level.doa.var_5bd7f25a = level.doa.rules.var_72d934b2;
 	level.doa.var_c9e1c854 = 2;
@@ -831,6 +834,7 @@ function function_53bcdb30()
 	level.doa.var_4481ad9 = 0;
 	level.doa.var_4714c375 = 100;
 	level.heli_height = 70;
+		
 	if(isdefined(level.var_4be54644))
 	{
 		[[level.var_4be54644]]();
@@ -845,6 +849,10 @@ function function_53bcdb30()
 	Size: 0x30
 	Parameters: 0
 	Flags: Linked
+
+	for(i = 0; i < level.doa.var_5a609640.size; i++){
+		level.doa.var_f5e35752[level.doa.var_f5e35752.size] = level.doa.var_5a609640[i];
+	}
 */
 function function_53b7b84f()
 {
@@ -917,7 +925,7 @@ function function_dc4ffe5c()
 				doa_utility::debugmsg("" + curcount);
 			#/
 		}
-		foreach(var_305d4c52, player in players)
+		foreach(player in players)
 		{
 			player thread namespace_64c6b720::function_676edeb7();
 			player thread namespace_831a4a7c::updateweapon();
@@ -954,7 +962,7 @@ function function_64a5cd5e()
 		}
 		level.doa.teleporter delete();
 	}
-	foreach(var_188dd380, player in getplayers())
+	foreach(player in getplayers())
 	{
 		self.doa.respawning = 0;
 		self.var_9ea856f6 = 0;
@@ -966,7 +974,7 @@ function function_64a5cd5e()
 	doa_utility::clearallcorpses();
 	namespace_d88e3a06::function_116bb43();
 	doa_utility::function_1ced251e(1);
-	foreach(var_798a9bc, player in getplayers())
+	foreach(player in getplayers())
 	{
 		player.doa.var_af875fb7 = [];
 		player namespace_831a4a7c::function_7f33210a();
@@ -979,7 +987,7 @@ function function_64a5cd5e()
 	level thread doa_utility::function_c5f3ece8(&"DOA_GAMEOVER", undefined, 6);
 	level clientfield::set("scoreMenu", 1);
 	level clientfield::set("gameover", 1);
-	foreach(var_21f5cc1c, player in getplayers())
+	foreach(player in getplayers())
 	{
 		if(!(isdefined(player.doa.var_80ffe475) && player.doa.var_80ffe475))
 		{
@@ -1002,7 +1010,7 @@ function function_64a5cd5e()
 	doa_utility::clearallcorpses();
 	namespace_d88e3a06::function_116bb43();
 	wait(1);
-	level notify(#"doa_game_is_over");
+	level notify("doa_game_is_over");
 	level notify(#"hash_24d3a44");
 	util::wait_network_frame();
 	missionrestart();
@@ -1020,7 +1028,7 @@ function function_64a5cd5e()
 function upload_leaderboards()
 {
 	players = getplayers();
-	foreach(var_8343c691, player in players)
+	foreach(player in players)
 	{
 		if(!isdefined(player.doa))
 		{
@@ -1133,7 +1141,7 @@ function function_780f83fd(round)
 	Offset: 0x5BC0
 	Size: 0x17C
 	Parameters: 0
-	Flags: Linked
+	Flags: Linked 
 */
 function function_688245f1()
 {
@@ -1168,8 +1176,8 @@ function function_688245f1()
 */
 function function_d2450010()
 {
-	self endon(#"disconnect");
-	self waittill(#"loadout_given");
+	self endon("disconnect");
+	self waittill("loadout_given");
 	/#
 		doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : ""));
 	#/

@@ -85,7 +85,7 @@ function init()
 	function_abd3b624("bomb_storage", 21, 8, &"DOA_BOMB_STORAGE", undefined, "bomb_storage");
 	function_abd3b624("hangar", 21, 5, &"DOA_HANGAR", undefined, "hangar");
 	function_abd3b624("mine", 28, 4, &"DOA_MINE", undefined, "cave");
-	function_abd3b624("righteous", 36, 10, &"DOA_RIGHTEOUS_ROOM", 36, "temple", undefined, 2);
+	function_abd3b624("righteous", 999, 10, &"DOA_RIGHTEOUS_ROOM", 999, "temple", undefined, 2);
 	foreach(arena in level.doa.var_3c04d3df)
 	{
 		function_abd3b624(arena.script_noteworthy, 999, 13, istring(("DOA_" + toupper(arena.script_noteworthy)) + "_ROOM"), 999, arena.script_noteworthy, 120);
@@ -547,8 +547,8 @@ function private function_1c54aa82(room)
 		}
 		case 10:
 		{
-			room.var_5281efe5 = room.var_5281efe5 + 64;
-			room.var_cbad0e8f = room.var_cbad0e8f + 64;
+			room.var_5281efe5 = room.var_5281efe5 + 1;
+			room.var_cbad0e8f = room.var_cbad0e8f + 1;
 			function_ba9c838e();
 			level.doa.var_6f2c52d8 = undefined;
 			doa_fate::function_833dad0d();
@@ -1027,7 +1027,7 @@ function function_78c7b56e(cheat = 0)
 {
 	level notify(#"hash_78c7b56e");
 	level endon(#"hash_78c7b56e");
-	level endon(#"doa_game_is_over");
+	level endon("doa_game_is_over");
 	if(!level flag::get("doa_game_is_completed") && (level.doa.arena_round_number + 1) < level.doa.rules.var_88c0b67b)
 	{
 		if(cheat == 0)
@@ -1066,11 +1066,23 @@ function function_78c7b56e(cheat = 0)
 		settopdowncamerayaw(0);
 	}
 	level.doa.arena_round_number = 0;
-	if(isdefined(level.doa.var_b5c260bb))
+	//if(isdefined(level.doa.var_b5c260bb))
+	//{
+	//	function_5af67667(level.doa.var_b5c260bb);
+	//	level.doa.round_number = level.doa.var_b5c260bb * level.doa.rules.var_88c0b67b;
+	//	level.doa.var_b5c260bb = undefined;
+	//}
+	//else
+	if (level.doa.current_arena == 0)
 	{
-		function_5af67667(level.doa.var_b5c260bb);
-		level.doa.round_number = level.doa.var_b5c260bb * level.doa.rules.var_88c0b67b;
-		level.doa.var_b5c260bb = undefined;
+		function_5af67667(level.doa.current_arena + 8); //THIS LINE IS FOR CHANGING ARENA TO THE NEXT ONE IN THE ARRAY
+		level.doa.round_number = 225;
+		r = 225;
+		level.doa.var_da96f13c = 3;
+		level.doa.zombie_move_speed = level.doa.zombie_move_speed + ( r * level.doa.var_c9e1c854);
+		level.doa.zombie_health = level.doa.zombie_health +  ( r * level.doa.zombie_health_inc);
+		level.doa.var_5bd7f25a = 4000;
+		level.doa.var_c061227e = 1.15;
 	}
 	else
 	{
@@ -1368,7 +1380,7 @@ function private function_47f8f274()
 	wait(0.1);
 	level util::waittill_any("exit_taken", "doa_game_is_over");
 	wait(0.05);
-	self notify(#"trigger");
+	self notify("trigger");
 }
 
 /*
@@ -1382,9 +1394,9 @@ function private function_47f8f274()
 */
 function private function_17665174(trigger)
 {
-	level endon(#"exit_taken");
-	level endon(#"doa_game_is_over");
-	trigger waittill(#"trigger");
+	level endon("exit_taken");
+	level endon("doa_game_is_over");
+	trigger waittill("trigger");
 	level.doa.var_c03fe5f1 = function_6b351e04(level.doa.forced_magical_room, level.doa.var_94073ca5);
 	if(isdefined(level.doa.var_c03fe5f1))
 	{
@@ -1452,6 +1464,22 @@ function function_f64e4b70(specific)
 	}
 	opened_exits = 0;
 	playsoundatposition("zmb_exit_open", (0, 0, 0));
+	if(!isDefined(level.doa.fatetesting)){
+		for (i = 0; i < getplayers().size; i++){
+			getplayers()[i] thread doa_fate::awardfate(4);
+			wait (1);
+			getplayers()[i] thread doa_fate::awardfate(13);
+		}
+		level.doa.fatetesting = 1;
+		/*for(i = 0; i < level.doa.var_5a609640.size; i++)
+	{
+		if(level.doa.var_5a609640[i].round == round)
+		{
+			return level.doa.var_5a609640[i];
+		}
+	}
+*/
+	}
 	namespace_74ae326f::function_471d1403();
 	if(!isdefined(level.doa.forced_magical_room))
 	{
@@ -1466,12 +1494,6 @@ function function_f64e4b70(specific)
 		}
 		level thread function_a8b0c139(exit_triggers[i], i);
 		level.doa.exits_open[level.doa.exits_open.size] = exit_triggers[i];
-		/#
-			if(isdefined(level.doa.dev_level_skipped))
-			{
-				exit_triggers[i] thread doa_utility::function_a4d1f25e("", randomfloatrange(0.5, 1));
-			}
-		#/
 		wait(0.2);
 	}
 	level notify(#"hash_7a1b7ce7");
@@ -1479,7 +1501,7 @@ function function_f64e4b70(specific)
 		assert(level.doa.exits_open.size != 0, "");
 	#/
 	level clientfield::set("numexits", level.doa.exits_open.size);
-	level waittill(#"exit_taken", exit_trigger);
+	level waittill("exit_taken", exit_trigger);
 	level.doa.forced_magical_room = undefined;
 	level.doa.var_94073ca5 = undefined;
 	level notify(#"hash_b96c96ac", level.doa.exits_open.size > 1);
@@ -1520,7 +1542,7 @@ function function_a8b0c139(trigger, objective_id)
 	}
 	while(true)
 	{
-		trigger waittill(#"trigger", guy);
+		trigger waittill("trigger", guy);
 		if(isdefined(guy) && !isplayer(guy))
 		{
 			continue;
@@ -1535,10 +1557,10 @@ function function_a8b0c139(trigger, objective_id)
 	}
 	objective_delete(objective_id);
 	wait(0.1);
-	level notify(#"exit_taken", trigger);
+	level notify("exit_taken", trigger);
 	foreach(player in getplayers())
 	{
-		player notify(#"exit_taken");
+		player notify("exit_taken");
 	}
 }
 
@@ -1553,7 +1575,7 @@ function function_a8b0c139(trigger, objective_id)
 */
 function rotate()
 {
-	self endon(#"death");
+	self endon("death");
 	while(true)
 	{
 		self rotateto(self.angles + vectorscale((0, 1, 0), 180), 4);
@@ -1619,7 +1641,7 @@ function function_4586479a(var_57e102cb = 1)
 	}
 	start_point = location + (vectorscale((0, 0, -1), 50));
 	level.doa.teleporter = spawn("script_model", start_point);
-	level.doa.teleporter endon(#"death");
+	level.doa.teleporter endon("death");
 	level.doa.teleporter setmodel("zombietron_teleporter");
 	level.doa.teleporter enablelinkto();
 	level.doa.teleporter thread namespace_eaa992c::function_285a2999("teleporter");
@@ -1639,7 +1661,7 @@ function function_4586479a(var_57e102cb = 1)
 			level.doa.teleporter.trigger thread doa_utility::function_a4d1f25e("", randomfloatrange(0.1, 1));
 		}
 	#/
-	level.doa.teleporter.trigger waittill(#"trigger", player);
+	level.doa.teleporter.trigger waittill("trigger", player);
 	level notify(#"hash_6df89d17");
 	level notify(#"hash_3b432f18");
 	foreach(player in getplayers())

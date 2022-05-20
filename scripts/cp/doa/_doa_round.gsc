@@ -70,6 +70,10 @@ function private function_542758d0()
 			var_72085a07.var_83bae1f8 = level.doa.rules.var_466591b1;
 		}
 		level.doa.var_5a609640[level.doa.var_5a609640.size] = var_72085a07;
+		//if(isdefined(var_72085a07.var_965be9))
+		//{
+		//	level thread [[var_72085a07.var_965be9]](var_72085a07);
+		//}
 	}
 }
 
@@ -104,35 +108,38 @@ function function_8c6e89b4(round)
 */
 function private function_5f5d09ae()
 {
-	def = function_8c6e89b4(level.doa.round_number);
-	if(!isdefined(def))
-	{
-		level.doa.var_d0cde02c = undefined;
-		return;
-	}
-	if(isdefined(def.initfunc))
-	{
-		level thread [[def.initfunc]](def);
-	}
-	level thread doa_utility::function_c5f3ece8(&"DOA_CHALLENGE", undefined, 6, (1, 0, 0));
-	level.voice playsound("vox_doaa_challenge_round");
-	level thread doa_utility::function_37fb5c23(def.title, undefined, 5, (1, 0, 0));
-	level.doa.var_d0cde02c = def;
-	if(isdefined(def.var_84aef63e))
-	{
-		if(isdefined(def.var_3ceda880) && def.var_3ceda880)
+	//crs = [5, 9, 13, 17, 25, 26, 33, 37, 40, 45, 49, 53, 60];
+	//for (i = 0; i < crs.size; i++){
+		def = function_8c6e89b4(level.doa.round_number);
+		if(!isdefined(def))
 		{
-			level.doa.rules.max_enemy_count = def.var_84aef63e;
+			level.doa.var_d0cde02c = undefined;
+			return;
 		}
-		if(level.doa.rules.max_enemy_count < def.var_84aef63e)
+		if(isdefined(def.initfunc))
 		{
-			level.doa.rules.max_enemy_count = def.var_84aef63e;
+			level thread [[def.initfunc]](def);
 		}
-	}
-	if(isdefined(def.var_965be9))
-	{
-		level thread [[def.var_965be9]](def);
-	}
+		level thread doa_utility::function_c5f3ece8(&"DOA_CHALLENGE", undefined, 6, (1, 0, 0));
+		level.voice playsound("vox_doaa_challenge_round");
+		level thread doa_utility::function_37fb5c23(def.title, undefined, 5, (1, 0, 0));
+		level.doa.var_d0cde02c = def;
+		if(isdefined(def.var_84aef63e))
+		{
+			if(isdefined(def.var_3ceda880) && def.var_3ceda880)
+			{
+				level.doa.rules.max_enemy_count = def.var_84aef63e;
+			}
+			if(level.doa.rules.max_enemy_count < def.var_84aef63e)
+			{
+				level.doa.rules.max_enemy_count = def.var_84aef63e;
+			}
+		}
+		if(isdefined(def.var_965be9))
+		{
+			level thread [[def.var_965be9]](def);
+		}
+	//}
 }
 
 /*
@@ -289,6 +296,23 @@ function main()
 		level.doa.zombie_move_speed = level.doa.zombie_move_speed + level.doa.var_c9e1c854;
 		level.doa.zombie_health = level.doa.zombie_health + level.doa.zombie_health_inc;
 		level.doa.round_number++;
+		/*switch(level.doa.round_number){
+			case 2:
+			{
+				wait (10);
+				doa_fate::function_77ed1bae();
+				break;
+			}
+			case 38:
+			{
+				level.doa.round_number = 3;
+				break;
+			}
+			default: 
+			{
+				break;
+			}
+		}*/
 		level.doa.var_6f2c52d8 = undefined;
 		level clientfield::set("roundnumber", level.doa.round_number & (1024 - 1));
 		function_d9345c74();
@@ -422,7 +446,7 @@ function function_f581d585(point, facepoint)
 */
 function function_fe0946ac(spawn_origin, var_97887a95 = 1)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	while(!isdefined(self.doa))
 	{
 		wait(0.05);
@@ -455,7 +479,7 @@ function function_fe0946ac(spawn_origin, var_97887a95 = 1)
 	}
 	angles = vectortoangles(var_60de7d19 - self.origin);
 	self setplayerangles((0, angles[1], 0));
-	self notify(#"move_to_start");
+	self notify("move_to_start");
 	if(var_97887a95)
 	{
 		self thread namespace_831a4a7c::function_b5843d4f(level.doa.arena_round_number == 3);
@@ -620,7 +644,7 @@ function function_87703158(var_372a8daa = 0)
 	level notify(#"hash_50be1db3");
 	level endon(#"hash_50be1db3");
 	flag::set("doa_round_spawning");
-	level notify(#"round_spawning_starting");
+	level notify("round_spawning_starting");
 	level lui::screen_close_menu();
 	level.doa.round_start_time = gettime();
 	level.doa.round_end_time = undefined;
@@ -726,6 +750,9 @@ function function_703bb8b2(round_number)
 	level.doa.spawn_sequence = [];
 	max = level.doa.rules.var_57cac10a + (level.doa.var_da96f13c * level.doa.rules.var_57cac10a);
 	waves = 6 + (int(round_number * 1.2));
+	if (round_number < 220){
+		waves = 5;
+	}
 	if(waves > max)
 	{
 		waves = max;
@@ -815,6 +842,6 @@ function private function_d9345c74()
 	level.doa.var_d0cde02c = undefined;
 	level.doa.var_9a1cbf58 = 1;
 	level flag::clear("doa_round_abort");
-	level notify(#"exit_taken");
+	level notify("exit_taken");
 }
 

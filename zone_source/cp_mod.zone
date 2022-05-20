@@ -18,7 +18,7 @@ scriptparsetree,scripts/cp/doa/_doa_core.gsc
 // scriptparsetree,scripts/cp/doa/_doa_dev.gsc
 // scriptparsetree,scripts/cp/doa/_doa_enemy.gsc
 // scriptparsetree,scripts/cp/doa/_doa_enemy_boss.gsc
-// scriptparsetree,scripts/cp/doa/_doa_fate.gsc
+scriptparsetree,scripts/cp/doa/_doa_fate.gsc
 // scriptparsetree,scripts/cp/doa/_doa_fx.csc
 // scriptparsetree,scripts/cp/doa/_doa_fx.gsc
 // scriptparsetree,scripts/cp/doa/_doa_gibs.gsc

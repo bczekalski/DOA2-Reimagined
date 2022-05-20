@@ -168,7 +168,7 @@ function function_fd0b8976(text, holdtime = 4, color = (1, 0, 0), reset = 0)
 
 /*
 	Name: function_77ed1bae
-	Namespace: doa_fate
+	Namespace: doa_fate::function_77ed1bae():
 	Checksum: 0x71E0EAA6
 	Offset: 0x15D0
 	Size: 0x76C
@@ -211,8 +211,40 @@ function function_77ed1bae()
 		rock.var_103432a2 = rock.origin;
 		rock.var_e35d13 = loc.origin;
 		rock setmodel(level.doa.var_b1698a42.var_f485e213);
+		switch(type)
+		{
+			case 1:
+			case 10:
+			{
+				rock setmodel(level.doa.var_bd919311);
+				rock setscale(10);
+				break;
+			}
+			case 2:
+			case 11:
+			{
+				rock setmodel("zombietron_diamond");
+				rock setscale(6);
+				break;
+			}
+			case 3:
+			case 12:
+			{
+				rock setmodel(level.doa.var_8d63e734);
+				rock setscale(10);
+				break;
+			}
+			case 4:
+			case 13:
+			{
+				rock setmodel(level.doa.var_f7277ad6);
+				rock setscale(5);
+				break;
+			}
+			
+		}
 		rock.angles = (0, type * 90, 0);
-		rock setscale(0.9 + (type * 0.05));
+		// rock setscale(0.9 + (type * 0.05));
 		trigger = spawn("trigger_radius", rock.origin, 0, loc.radius, 128);
 		trigger.targetname = "fateTrigger";
 		trigger.type = type;
@@ -261,7 +293,7 @@ function function_77ed1bae()
 */
 function private function_7882f69e(trigger)
 {
-	self endon(#"death");
+	self endon("death");
 	level waittill(#"hash_7b036079");
 	trigger notify(#"hash_fad6c90b");
 }
@@ -277,7 +309,7 @@ function private function_7882f69e(trigger)
 */
 function private function_524284e0()
 {
-	self endon(#"death");
+	self endon("death");
 	level thread function_7882f69e(self);
 	note = self util::waittill_any_return("trigger_wrong_match", "trigger_right_match", "trigger_fated", "death");
 	self triggerenable(0);
@@ -331,7 +363,7 @@ function private function_271ba816(var_26fc4461 = 0)
 	objective_set3d(self.id, 1, "default", "*");
 	while(true)
 	{
-		self waittill(#"trigger", guy);
+		self waittill("trigger", guy);
 		objective_state(self.id, "done");
 		if(!isplayer(guy))
 		{
@@ -359,48 +391,49 @@ function private function_271ba816(var_26fc4461 = 0)
 			guy.doa.var_2219ffc9 = 1;
 			if(guy.doa.fate == 0)
 			{
-				avail = level.doa.var_b1698a42.types;
-				players = namespace_831a4a7c::function_5eb6e4d1();
-				foreach(player in players)
+				if(self.type == 10)
 				{
-					if(player == guy)
-					{
-						continue;
-					}
-					if(player.doa.fate == 0)
-					{
-						continue;
-					}
-					if(player.doa.fate == 10 || player.doa.fate == 1)
-					{
-						arrayremovevalue(avail, 1, 0);
-					}
-					if(player.doa.fate == 11 || player.doa.fate == 2)
-					{
-						arrayremovevalue(avail, 2, 0);
-					}
-					if(player.doa.fate == 12 || player.doa.fate == 3)
-					{
-						arrayremovevalue(avail, 3, 0);
-					}
-					if(player.doa.fate == 13 || player.doa.fate == 4)
-					{
-						arrayremovevalue(avail, 4, 0);
-					}
-				}
-				/#
-					assert(avail.size > 0);
-				#/
-				if(avail.size == 1)
-				{
-					fate = avail[0];
+					guy awardfate(1, self.rock);
+					self notify(#"hash_14fdf5a2");
+					level notify(#"hash_7b036079");
+					break;
 				}
 				else
 				{
-					fate = avail[randomint(avail.size)];
+					if(self.type == 11)
+					{
+						guy awardfate(2, self.rock);
+						self notify(#"hash_14fdf5a2");
+						level notify(#"hash_7b036079");
+						break;
+					}
+					else
+					{
+						if(self.type == 12)
+						{
+							guy awardfate(3, self.rock);
+							self notify(#"hash_14fdf5a2");
+							level notify(#"hash_7b036079");
+							break;
+						}
+						else
+						{
+							if(self.type == 13)
+							{
+								guy awardfate(4, self.rock);
+								self notify(#"hash_14fdf5a2");
+								level notify(#"hash_7b036079");
+								break;
+							}
+							else
+							{
+								self thread function_78f27983(guy);
+								self notify(#"hash_fad6c90b");
+								break;
+							}
+						}
+					}
 				}
-				guy awardfate(fate, self.rock);
-				self notify(#"hash_9075e98");
 			}
 			else
 			{
@@ -684,7 +717,7 @@ function private function_78f27983(player)
 	Offset: 0x2FD0
 	Size: 0x2CE
 	Parameters: 2
-	Flags: Linked
+	Flags: Linked self thread doa_fate::awardfate(13);
 */
 function awardfate(type, rock)
 {
@@ -757,7 +790,7 @@ function awardfate(type, rock)
 */
 function function_17fb777b(player, model, modelscale, fate_cb)
 {
-	player endon(#"disconnect");
+	player endon("disconnect");
 	if(!isdefined(modelscale))
 	{
 		modelscale = 1;
@@ -980,6 +1013,38 @@ function function_833dad0d()
 		rock.var_103432a2 = rock.origin;
 		rock.angles = loc.angles + vectorscale((0, 1, 0), 90);
 		rock setmodel(level.doa.var_b1698a42.var_f485e213);
+		switch(type)
+		{
+			case 1:
+			case 10:
+			{
+				rock setmodel(level.doa.var_bd919311);
+				rock setscale(10);
+				break;
+			}
+			case 2:
+			case 11:
+			{
+				rock setmodel("zombietron_diamond");
+				rock setscale(6);
+				break;
+			}
+			case 3:
+			case 12:
+			{
+				rock setmodel(level.doa.var_8d63e734);
+				rock setscale(10);
+				break;
+			}
+			case 4:
+			case 13:
+			{
+				rock setmodel(level.doa.var_f7277ad6);
+				rock setscale(5);
+				break;
+			}
+			
+		}
 		trigger = spawn("trigger_radius", rock.origin, 0, loc.radius, 128);
 		trigger.targetname = "fate2trigger";
 		trigger.type = type;
@@ -1054,7 +1119,7 @@ function function_be1e2cfc(guardian, var_526b2f85)
 {
 	msg = level util::waittill_any("graveofJusticeDone", "player_challenge_failure");
 	level clientfield::set("activateBanner", 0);
-	level waittill(#"fade_out_complete");
+	level waittill("fade_out_complete");
 	if(isdefined(level.doa.boss))
 	{
 		level.doa.boss delete();
@@ -1079,11 +1144,11 @@ function function_be1e2cfc(guardian, var_526b2f85)
 */
 function private function_5aaa5a64(shield)
 {
-	self endon(#"death");
+	self endon("death");
 	level endon(#"hash_cb54277d");
 	while(true)
 	{
-		self waittill(#"trigger", guy);
+		self waittill("trigger", guy);
 		if(!isalive(guy))
 		{
 			continue;
@@ -1153,7 +1218,7 @@ function private function_d654dcd9()
 function private function_60a14daa(boss)
 {
 	self.boss = boss;
-	self endon(#"death");
+	self endon("death");
 	while(true)
 	{
 		self rotateto(self.angles + vectorscale((0, 1, 0), 180), 2);
@@ -1188,7 +1253,7 @@ function private function_b1d23a45(boss)
 	while(self.health > 0)
 	{
 		lasthealth = self.health;
-		self waittill(#"damage", damage);
+		self waittill("damage", damage);
 		if(isdefined(self.var_e34a8df9))
 		{
 			self thread namespace_eaa992c::function_285a2999("stoneboss_shield_explode");
@@ -1426,10 +1491,11 @@ function private function_c492e72d()
 			self thread namespace_4973e019::function_76b30cc1();
 		}
 	#/
+	self.health = 20;
 	while(self.health > 0)
 	{
 		lasthealth = self.health;
-		self waittill(#"damage", damage, attacker);
+		self waittill("damage", damage, attacker);
 		data = doa_utility::clamp(self.health / self.maxhealth, 0, 1);
 		level clientfield::set("pumpBannerBar", data);
 		if(isdefined(attacker))
@@ -1496,8 +1562,8 @@ function private function_c492e72d()
 	}
 	self thread namespace_eaa992c::function_285a2999("stoneboss_death");
 	self thread namespace_1a381543::function_90118d8c("zmb_stoneboss_died");
-	self notify(#"defeated");
-	level notify(#"defeated", self);
+	self notify("defeated");
+	level notify("defeated", self);
 	level notify(#"hash_cb54277d");
 }
 
@@ -1658,7 +1724,7 @@ function private function_b6a1fab3()
 */
 function function_3caf8e2(endtime)
 {
-	self endon(#"disconnect");
+	self endon("disconnect");
 	lastposition = self.origin;
 	stepsize = 20;
 	self clientfield::set("fated_boost", 1);
@@ -1712,7 +1778,7 @@ function private function_69ae5d15(loc)
 	{
 		return;
 	}
-	trigger endon(#"death");
+	trigger endon("death");
 	trigger.targetname = "furyhotspot";
 	trigger thread doa_utility::function_a625b5d3(self);
 	variance = randomfloatrange(0, 3);
@@ -1722,7 +1788,7 @@ function private function_69ae5d15(loc)
 	while(gettime() < timeleft)
 	{
 		wait(0.05);
-		trigger waittill(#"trigger", guy);
+		trigger waittill("trigger", guy);
 		if(isplayer(guy))
 		{
 			continue;
@@ -1769,7 +1835,7 @@ function private function_9fc6e261()
 {
 	self notify(#"hash_9fc6e261");
 	self endon(#"hash_9fc6e261");
-	self waittill(#"actor_corpse", corpse);
+	self waittill("actor_corpse", corpse);
 	wait(0.05);
 	if(isdefined(corpse))
 	{
