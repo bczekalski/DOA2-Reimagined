@@ -28,7 +28,7 @@ Important Global Variables:
 `level.doa.var_b351e5fb - current enemy count`
 `level.doa.rules.max_enemy_count`
 `level.doa.rules.var_88c0b67b - rounds per arena (default 4)`
-`level.doa.var_c061227e - max speed of enemies (i think)`
+`level.doa.var_c061227e - anim playback speed (zombie speed cap)`
 `level.doa.zombie_move_speed`
 
 

@@ -1073,16 +1073,22 @@ function function_78c7b56e(cheat = 0)
 	//	level.doa.var_b5c260bb = undefined;
 	//}
 	//else
-	if (level.doa.current_arena == 0)
+	if (level.doa.current_arena == 0 && level.doa.round_number <= 5)
 	{
-		function_5af67667(level.doa.current_arena + 8); //THIS LINE IS FOR SKIPPING STRAIGHT TO CHINA 4
-		level.doa.round_number = 225;
-		r = 225;
-		level.doa.var_da96f13c = 3;
+		function_5af67667(level.doa.current_arena + level.doa.arena_skips); //THIS LINE SKIPS US TO THE ARENA AND LAP THAT WE SELECTED WITH THE DROPS ON ROUND 1
+		
+		level.doa.var_da96f13c = level.doa.lap_skips;
+		a = level.doa.var_da96f13c;
+
+
+		level.doa.round_number = (4 * level.doa.current_arena) + (64 * a);
+		r = level.doa.round_number;
+		
+
 		level.doa.zombie_move_speed = level.doa.zombie_move_speed + ( r * level.doa.var_c9e1c854);
 		level.doa.zombie_health = level.doa.zombie_health +  ( r * level.doa.zombie_health_inc);
-		level.doa.var_5bd7f25a = 4000;
-		level.doa.var_c061227e = 1.15;
+		level.doa.var_5bd7f25a = math::clamp(level.doa.rules.var_72d934b2 - (a * 2000), 2000, 10000);
+		level.doa.var_c061227e = math::clamp(1 + (a * 0.05), 1, 1.15);
 	}
 	else
 	{
@@ -1454,29 +1460,42 @@ function function_f64e4b70(specific)
 			num_exits = math::clamp(num_exits, 2, exit_triggers.size);
 		}
 	}
-	magic_exit = undefined;
-	if((level.doa.round_number - level.doa.lastmagical_exit_taken) > 2)
-	{
-		if(num_exits > 1)
-		{
-			magic_exit = randomint(num_exits);
-		}
-	}
+	// magic_exit = undefined;
+	// if((level.doa.round_number - level.doa.lastmagical_exit_taken) > 2)
+	// {
+	// 	if(num_exits > 1)
+	// 	{
+	// 		magic_exit = randomint(num_exits);
+	// 	}
+	// }
 	opened_exits = 0;
 	playsoundatposition("zmb_exit_open", (0, 0, 0));
 	if(!isDefined(level.doa.fatetesting)){
-		for (i = 0; i < getplayers().size; i++){
-			getplayers()[i] thread doa_fate::awardfate(4);
-			wait (1);
-			getplayers()[i] thread doa_fate::awardfate(13);
-		}
+		thread island_fating();
 		level.doa.fatetesting = 1;
 		for(i = 0; i < level.doa.var_5a609640.size; i++){
 			temp = level.doa.var_5a609640[i];
-			if (temp == 37){
-				continue;
+			//crs = [5, 9, 13, 17, 25, 26, 33, 37, 40, 45, 49, 53, 60];
+			switch(temp.round)
+			{
+				case 5:
+				case 13:
+				case 17:
+				case 26:
+				case 33:
+				case 40:
+				case 45:
+				case 49:
+				case 53:
+				case 60:
+				{
+					level.doa.var_f5e35752[level.doa.var_f5e35752.size] = temp;
+				}
+				default:
+				{
+					continue;
+				}
 			}
-			level.doa.var_f5e35752[level.doa.var_f5e35752.size] = temp;
 		}
 		/*for(i = 0; i < level.doa.var_5a609640.size; i++)
 	{
@@ -1487,18 +1506,18 @@ function function_f64e4b70(specific)
 	}
 */
 	}
-	namespace_74ae326f::function_471d1403();
-	if(!isdefined(level.doa.forced_magical_room))
-	{
-		function_46b3be09();
-	}
+	//namespace_74ae326f::function_471d1403();
+	// if(!isdefined(level.doa.forced_magical_room))
+	// {
+	// 	function_46b3be09();
+	// }
 	for(i = 0; i < num_exits; i++)
 	{
-		if(isdefined(level.doa.forced_magical_room) || (isdefined(magic_exit) && i == magic_exit))
-		{
-			level thread function_17665174(exit_triggers[i]);
-			magic_exit = undefined;
-		}
+		// if(isdefined(level.doa.forced_magical_room) || (isdefined(magic_exit) && i == magic_exit))
+		// {
+		// 	level thread function_17665174(exit_triggers[i]);
+		// 	magic_exit = undefined;
+		// }
 		level thread function_a8b0c139(exit_triggers[i], i);
 		level.doa.exits_open[level.doa.exits_open.size] = exit_triggers[i];
 		wait(0.2);
@@ -1568,6 +1587,382 @@ function function_a8b0c139(trigger, objective_id)
 	foreach(player in getplayers())
 	{
 		player notify("exit_taken");
+	}
+}
+
+
+
+function island_fating(){
+	
+	level.doa.title3 = newhudelem();
+	level.doa.title3.alignx = "center";
+	level.doa.title3.aligny = "middle";
+	level.doa.title3.horzalign = "center";
+	level.doa.title3.vertalign = "middle";
+	level.doa.title3.y = level.doa.title3.y - 50;
+	level.doa.title3.foreground = 1;
+	level.doa.title3.fontscale = 2.5;
+	level.doa.title3.color = (1, 0.5, 0);
+	level.doa.title3.hidewheninmenu = 1;
+	level.doa.title3.alpha = 0;
+	level.doa.title3.sort = 1;
+
+	level.doa.title4 = newhudelem();
+	level.doa.title4.alignx = "center";
+	level.doa.title4.aligny = "middle";
+	level.doa.title4.horzalign = "center";
+	level.doa.title4.vertalign = "middle";
+	level.doa.title4.y = level.doa.title3.y - 30;
+	level.doa.title4.foreground = 1;
+	level.doa.title4.fontscale = 2.5;
+	level.doa.title4.color = (1, 0.5, 0);
+	level.doa.title4.hidewheninmenu = 1;
+	level.doa.title4.alpha = 0;
+	level.doa.title4.sort = 1;
+	
+	thread spawnFirepower();
+	thread spawnFortune();
+	thread spawnFriendship();
+	thread spawnFeet();
+	
+	thread spawnJudgement();
+
+	thread spawnIncrementor();
+
+	thread spawnArenaIncrementor();
+}
+
+function private spawnFirepower(){
+
+	origin = (-14656, 6528, 310);
+	rock = Spawn( "script_model", origin);
+	rock.origin = origin;
+	rock.script_noteworthy = "a_pickup_item";
+	rock.angles = (0, 0, 0);
+	rock.targetname = "pickup";
+
+	rock.trigger = doa_pickups::function_c5bc781(origin);
+	rock.trigger.targetname = "pickupTrigger";
+	rock.trigger enablelinkto();
+	rock.trigger linkto(rock);
+	rock SetModel(level.doa.var_bd919311);
+
+	rock setScale(5);
+
+	rock thread namespace_eaa992c::function_285a2999("glow_red");
+
+	rock thread fateAwarder(1);
+
+	rock thread rock_cleanup();
+	
+}
+
+function private spawnFortune(){
+
+	origin = (-15296, 7296, 310);
+	rock = Spawn( "script_model", origin);
+	rock.origin = origin;
+	rock.script_noteworthy = "a_pickup_item";
+	rock.angles = (0, 0, 0);
+	rock.targetname = "pickup";
+
+	rock.trigger = doa_pickups::function_c5bc781(origin);
+	rock.trigger.targetname = "pickupTrigger";
+	rock.trigger enablelinkto();
+	rock.trigger linkto(rock);
+	rock SetModel( "zombietron_sapphire" );
+
+	rock setScale(4);
+
+	rock thread namespace_eaa992c::function_285a2999("glow_red");
+
+	rock thread fateAwarder(2);
+
+	rock thread rock_cleanup();
+
+}
+
+function private spawnFriendship(){
+
+	origin = (-14656, 7296, 310);
+	rock = Spawn( "script_model", origin);
+	rock.origin = origin;
+	rock.script_noteworthy = "a_pickup_item";
+	rock.angles = (0, 0, 0);
+	rock.targetname = "pickup";
+
+	rock.trigger = doa_pickups::function_c5bc781(origin);
+	rock.trigger.targetname = "pickupTrigger";
+	rock.trigger enablelinkto();
+	rock.trigger linkto(rock);
+	rock SetModel( level.doa.var_8d63e734 );
+
+	rock setScale(4);
+
+	rock thread namespace_eaa992c::function_285a2999("glow_red");
+
+	rock thread fateAwarder(3);
+
+	rock thread rock_cleanup();
+	
+}
+
+function private spawnFeet(){
+	
+	origin = (-15296, 6528, 310);
+	rock = Spawn( "script_model", origin);
+	rock.origin = origin;
+	rock.script_noteworthy = "a_pickup_item";
+	rock.angles = (0, 0, 0);
+	rock.targetname = "pickup";
+
+	rock.trigger = doa_pickups::function_c5bc781(origin);
+	rock.trigger.targetname = "pickupTrigger";
+	rock.trigger enablelinkto();
+	rock.trigger linkto(rock);
+	rock SetModel( level.doa.var_f7277ad6 );
+
+	rock setScale(5);
+
+	rock thread namespace_eaa992c::function_285a2999("glow_red");
+
+	rock thread fateAwarder(4);
+
+	rock thread rock_cleanup();
+	
+}
+
+function private spawnJudgement(){
+	
+	origin = (-15296, 6900, 310);
+	rock = Spawn( "script_model", origin);
+	rock.origin = origin;
+	rock.script_noteworthy = "a_pickup_item";
+	rock.angles = (0, 0, 0);
+	rock.targetname = "pickup";
+
+	rock.trigger = doa_pickups::function_c5bc781(origin);
+	rock.trigger.targetname = "pickupTrigger";
+	rock.trigger enablelinkto();
+	rock.trigger linkto(rock);
+	rock SetModel( level.doa.var_afa6d081 );
+
+	rock setScale(3);
+
+	rock thread namespace_eaa992c::function_285a2999("glow_white");
+
+	rock thread fateJudger();
+
+	rock thread rock_cleanup();
+	
+}
+
+function private fateAwarder(type){
+
+	level endon("exit_taken");
+
+	wait 2;
+	while(1){
+		self.trigger waittill("trigger", guy);
+
+		if(!isDefined(guy)){
+			continue;
+		}
+		if(!isPlayer(guy)){
+			continue;
+		}
+		if(isDefined(guy.doa.fate) && guy.doa.fate){
+			continue;
+		}
+
+		guy.doa.fate = type;
+		guy thread doa_fate::awardfate(type, self);
+		wait 2;
+
+		if(isdefined(self.trigger))
+		{
+			self.trigger delete();
+			self.trigger = undefined;
+		}
+		self hide();
+		wait(0.2);
+		self delete();
+		wait 3;
+
+		allfated = 1;
+		for (i = 0; i < getplayers().size; i++){
+			if (!(isDefined(getplayers()[i].doa.fate) && getplayers()[i].doa.fate)){
+				allfated = undefined;
+			}
+		}
+		if (!isDefined(allfated)){
+			switch(type){
+				case 1:
+					thread spawnFortune();
+					break;
+				case 2:
+					thread spawnFirepower();
+					break;
+				case 3:
+					thread spawnFriendship();
+					break;
+				case 4:
+					thread spawnFeet();
+					break;
+				default:
+					break;
+			}
+		}
+		break;
+	}
+}
+
+function private fateJudger(){
+	
+	level endon("exit_taken");
+	wait 2;
+	while(1){
+		self.trigger waittill("trigger", guy);
+		if(!isDefined(guy)){
+			continue;
+		}
+		if(!isPlayer(guy)){
+			continue;
+		}
+		if(!(isDefined(guy.doa.fate) && guy.doa.fate)){
+			continue;
+		}
+
+		guy.doa.fate += 9;
+		guy thread doa_fate::awardfate(guy.doa.fate, self);
+		wait 2;
+
+
+		self hide();
+		wait 3;
+		self show();
+
+		
+	}
+}
+
+function private rock_cleanup(){
+	
+	
+	level waittill("exit_taken");
+
+	if(isdefined(self.trigger))
+	{
+		self.trigger delete();
+		self.trigger = undefined;
+	}
+	self hide();
+	wait(0.2);
+	self delete();
+
+}
+
+function private spawnIncrementor(){
+	
+	origin = (-14976, 7048, 310);
+	rock = Spawn( "script_model", origin);
+	rock.origin = origin;
+	rock.script_noteworthy = "a_pickup_item";
+	rock.angles = (0, 0, 0);
+	rock.targetname = "pickup";
+
+	rock.trigger = doa_pickups::function_c5bc781(origin);
+	rock.trigger.targetname = "pickupTrigger";
+	rock.trigger enablelinkto();
+	rock.trigger linkto(rock);
+	rock SetModel(level.doa.var_9bf7e61b);
+
+	rock setScale(5);
+
+	rock thread namespace_eaa992c::function_285a2999("glow_yellow");
+
+	rock thread lapsIncrementor();
+
+	rock thread rock_cleanup();
+}
+
+function private lapsIncrementor(){
+	
+	level endon("exit_taken");
+	wait 2;
+	while(1){
+		self.trigger waittill("trigger", guy);
+		if(!isDefined(guy)){
+			continue;
+		}
+		if(!isPlayer(guy)){
+			continue;
+		}
+
+		self thread namespace_eaa992c::function_285a2999("fate_trigger");
+		self thread namespace_1a381543::function_90118d8c("zmb_fate_choose");
+
+		level.doa.lap_skips++;
+
+		self hide();
+		wait 1.5;
+		self show();
+		wait 1.5;
+	}
+}
+
+function private spawnArenaIncrementor(){
+	
+	origin = (-14656, 7048, 310);
+	rock = Spawn( "script_model", origin);
+	rock.origin = origin;
+	rock.script_noteworthy = "a_pickup_item";
+	rock.angles = (0, 0, 0);
+	rock.targetname = "pickup";
+
+	rock.trigger = doa_pickups::function_c5bc781(origin);
+	rock.trigger.targetname = "pickupTrigger";
+	rock.trigger enablelinkto();
+	rock.trigger linkto(rock);
+	rock SetModel(level.doa.coat_of_arms);
+
+	rock setScale(3);
+
+	rock thread namespace_eaa992c::function_285a2999("glow_yellow");
+
+	rock thread arenaIncrementor();
+
+	rock thread rock_cleanup();
+}
+
+function private arenaIncrementor(){
+	
+	level endon("exit_taken");
+	wait 2;
+	while(1){
+		self.trigger waittill("trigger", guy);
+		if(!isDefined(guy)){
+			continue;
+		}
+		if(!isPlayer(guy)){
+			continue;
+		}
+
+		self thread namespace_eaa992c::function_285a2999("fate_trigger");
+		self thread namespace_1a381543::function_90118d8c("zmb_fate_choose");
+
+		level.doa.arena_skips++;
+
+		if (level.doa.arena_skips > 15){
+			level.doa.arena_skips = 0;
+		}
+
+		self hide();
+		wait 1.5;
+		self show();
+		wait 1.5;
+
+		
 	}
 }
 

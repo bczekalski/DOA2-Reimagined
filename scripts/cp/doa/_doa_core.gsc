@@ -108,9 +108,6 @@ function private _load()
 				var_8acfab2a++;
 			}
 		}
-		/#
-			doa_utility::debugmsg(((("" + getnumconnectedplayers()) + "") + getnumexpectedplayers() + "") + var_a349db66);
-		#/
 	}
 	while(var_f862b7b1 < var_91f98264 && (player_count_actual + var_a349db66) < var_91f98264);
 	setinitialplayersconnected();
@@ -241,11 +238,6 @@ function registerclientfields()
 	clientfield::register("scriptmover", "camera_focus_item", 1, 1, "int");
 	clientfield::register("actor", "camera_focus_item", 1, 1, "int");
 	clientfield::register("vehicle", "camera_focus_item", 1, 1, "int");
-	/#
-		clientfield::register("", "", 1, 2, "");
-		clientfield::register("", "", 1, 30, "");
-		clientfield::register("", "", 1, 1, "");
-	#/
 	for(i = 0; i < 4; i++)
 	{
 		clientfield::register("world", "set_ui_gprDOA" + i, 1, 30, "int");
@@ -265,9 +257,6 @@ function registerclientfields()
 */
 function on_player_connect()
 {
-	/#
-		doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : ""));
-	#/
 	self.ignoreme = 1;
 	self.topdowncamera = 1;
 	self.var_63830602 = gettime();
@@ -292,7 +281,9 @@ function initialblack(time = 12)
 	if(isdefined(self))
 	{
 		self closemenu("InitialBlack");
+
 	}
+	thread coordinates_provider();
 }
 
 /*
@@ -397,9 +388,6 @@ function function_437a340d(var_73419762)
 		self freezecontrols(1);
 		self thread doa_utility::notifymeinnsec("menuresponse", 2, "menuresponse", "notarealmenu", "notarealresponse");
 		self waittill("menuresponse", menu, response);
-		/#
-			doa_utility::debugmsg((("" + menu) + "") + response);
-		#/
 		var_682b9faa = gettime();
 		if((var_682b9faa - timestart) > (3 * 60000))
 		{
@@ -431,6 +419,35 @@ function function_437a340d(var_73419762)
 	self.doa.var_80ffe475 = var_73419762;
 }
 
+
+
+
+function coordinates_provider(){
+
+	//level flag::wait_till("initial_blackscreen_passed");
+    while(1)
+    {   
+		wait (3);
+        org = GetPlayers()[0].origin;
+        str = "( " + org[0] + " , " + org[1] + " , " + org[2] + " )";
+        IPrintLn(str);
+        wait (2.5);
+    }
+
+		//level thread doa_utility::function_37fb5c23(txt);
+		//wait (1);
+		//level thread doa_utility::function_37fb5c23(co[1]);
+		//wait (1);
+		//level thread doa_utility::function_37fb5c23(co[2]);
+
+
+
+
+}
+
+
+
+
 /*
 	Name: on_player_spawned
 	Namespace: namespace_693feb87
@@ -442,9 +459,6 @@ function function_437a340d(var_73419762)
 */
 function on_player_spawned()
 {
-	/#
-		doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : ""));
-	#/
 	self.topdowncamera = 1;
 	self thread namespace_831a4a7c::function_138c35de();
 	self namespace_831a4a7c::function_7d7a7fde();
@@ -588,6 +602,8 @@ function function_c7f824a()
 	level.doa.current_arena = 0;
 	level.lighting_state = 0;
 	level.doa.var_da96f13c = 0;
+	level.doa.arena_skips = 1;
+	level.doa.lap_skips = 0;
 	level.doa.var_2836c8ee = undefined;
 	level.doa.in_intermission = 0;
 	level.doa.flipped = 0;
@@ -645,9 +661,6 @@ function function_c7f824a()
 */
 function function_555fb805()
 {
-	/#
-		assert(!isdefined(level.doa));
-	#/
 	if(!isdefined(level.doa))
 	{
 		level.doa = spawnstruct();
@@ -738,12 +751,6 @@ function function_555fb805()
 */
 function function_53bcdb30()
 {
-	/#
-		assert(isdefined(level.doa));
-	#/
-	/#
-		assert(!isdefined(level.doa.rules));
-	#/
 	level.doa.rules = spawnstruct();
 	level.doa.rules.var_812a15ac = 9;
 	level.doa.rules.var_ec21c11e = 9;
@@ -794,8 +801,8 @@ function function_53bcdb30()
 	level.doa.rules.var_5e3c9766 = 25000;
 	level.doa.rules.var_a29b8bda = 30;
 	level.doa.rules.var_eb81beeb = 202500;
-	level.doa.rules.fate_level_min = 18;
-	level.doa.rules.fate_level_max = 18;
+	level.doa.rules.fate_level_min = 999;
+	level.doa.rules.fate_level_max = 999;
 	level.doa.rules.fate_level_chance = 100;
 	level.doa.rules.fate_wait = 30;
 	level.doa.rules.var_9ff6711d = 26;
@@ -811,7 +818,7 @@ function function_53bcdb30()
 	level.doa.rules.var_57cac10a = 30;
 	level.doa.rules.var_88c0b67b = 4;
 	level.doa.rules.var_6fa02512 = 1000;
-	level.doa.rules.var_e626be31 = 20;
+	level.doa.rules.var_e626be31 = 500;
 	level.doa.rules.ignore_enemy_timer = 0.4;
 	level.doa.rules.var_c7b07ba9 = 100;
 	level.doa.rules.var_c53b19d1 = 0.1;
@@ -918,9 +925,6 @@ function function_dc4ffe5c()
 		curcount = players.size;
 		if(curcount != var_97e9dd7)
 		{
-			/#
-				doa_utility::debugmsg("" + curcount);
-			#/
 		}
 		foreach(player in players)
 		{
@@ -991,9 +995,6 @@ function function_64a5cd5e()
 			player function_9ac615ee(1);
 			continue;
 		}
-		/#
-			doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : ""));
-		#/
 	}
 	wait(4);
 	upload_leaderboards();
@@ -1055,11 +1056,6 @@ function function_9ac615ee(gameover, round = level.doa.round_number)
 		self setdstat("deadOpsArcade", "skullsEarnedRound", self.doa.var_fda5a6e5);
 		self setdstat("deadOpsArcade", "gemsEarnedRound", self.doa.var_6946711f);
 		self setdstat("deadOpsArcade", "silverbackKillsRound", self.doa.var_52e89a72);
-		/#
-			doa_utility::debugmsg("" + self getdstat("", ""));
-			doa_utility::debugmsg("" + self getdstat("", ""));
-			doa_utility::debugmsg("" + self getdstat("", ""));
-		#/
 		self.doa.var_fda5a6e5 = 0;
 		self.doa.var_6946711f = 0;
 		self.doa.var_52e89a72 = 0;
@@ -1069,11 +1065,6 @@ function function_9ac615ee(gameover, round = level.doa.round_number)
 		self setdstat("deadOpsArcade", "skullsEarned", self.doa.skulls);
 		self setdstat("deadOpsArcade", "scoreAchieved", self namespace_64c6b720::function_93ccc5da());
 		self setdstat("deadOpsArcade", "roundAchieved", round);
-		/#
-			doa_utility::debugmsg("" + self getdstat("", ""));
-			doa_utility::debugmsg("" + self getdstat("", ""));
-			doa_utility::debugmsg("" + self getdstat("", ""));
-		#/
 		if(isdefined(gameover) && gameover)
 		{
 			var_be452d64 = self getdstat("deadOpsArcade", "totalGamesPlayed");
@@ -1115,16 +1106,10 @@ function function_780f83fd(round)
 	{
 		return;
 	}
-	/#
-		doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : "") + "" + round + "" + self namespace_64c6b720::function_93ccc5da());
-	#/
 	self function_9ac615ee(0, round);
 	wait(4);
 	if(isdefined(self))
 	{
-		/#
-			doa_utility::debugmsg("");
-		#/
 		self uploadleaderboards();
 		self.doa.var_a483af0a = gettime();
 		self.doa.var_b55a8647 = round;
@@ -1143,9 +1128,7 @@ function function_780f83fd(round)
 function function_688245f1()
 {
 	resettimeout();
-	/#
-		doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : ""));
-	#/
+
 	self stopshellshock();
 	self stoprumble("damage_heavy");
 	self.sessionstate = "spectator";
@@ -1175,9 +1158,6 @@ function function_d2450010()
 {
 	self endon("disconnect");
 	self waittill("loadout_given");
-	/#
-		doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : ""));
-	#/
 	weapon = getweapon("zombietron_lmg");
 	self takeallweapons();
 	self giveweapon(weapon);
@@ -1196,9 +1176,6 @@ function function_d2450010()
 */
 function function_a90bdb51()
 {
-	/#
-		doa_utility::debugmsg("" + (isdefined(self.name) ? self.name : ""));
-	#/
 	weapon = getweapon("zombietron_lmg");
 	self takeallweapons();
 	self giveweapon(weapon);

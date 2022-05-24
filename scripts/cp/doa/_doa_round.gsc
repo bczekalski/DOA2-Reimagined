@@ -589,6 +589,13 @@ function function_21a582ff(current_wave, endnote)
 				{
 					continue;
 				}
+				/*POLE ZOMBIE TESTING LOGIC
+				for (i = 0; i < level.doa.var_f5e35752.size; i++){
+					if (level.doa.var_f5e35752[i].round == 60){
+						var_9f7a6d48 = level.doa.var_f5e35752[i];
+						break;
+					}
+				}*/
 				if(level.doa.var_b351e5fb >= level.doa.rules.max_enemy_count)
 				{
 					doa_utility::function_fe180f6f(2);
@@ -750,7 +757,7 @@ function function_703bb8b2(round_number)
 	level.doa.spawn_sequence = [];
 	max = level.doa.rules.var_57cac10a + (level.doa.var_da96f13c * level.doa.rules.var_57cac10a);
 	waves = 6 + (int(round_number * 1.2));
-	if (round_number < 220){
+	if (round_number < 4){ //round length limiting code -- waves cap
 		waves = 5;
 	}
 	if(waves > max)
