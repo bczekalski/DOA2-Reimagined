@@ -737,6 +737,86 @@ function private function_9b67513c(name)
 	}
 }
 
+
+function private arena_name(ca)
+{
+	switch(ca)
+	{
+		case 0:
+		{
+			return "Island";
+		}
+		case 1:
+		{
+			return "Docks";
+		}
+		case 2:
+		{
+			return "Cows";
+		}
+		case 3:
+		{
+			return "Dirt Nap";
+		}
+		case 4:
+		{
+			return "Temple";
+		}
+		case 5:
+		{
+			return "Coliseum";
+		}
+		case 6:
+		{
+			return "Blood Lake";
+		}
+		case 7:
+		{
+			return "Margwa Cave";
+		}
+		case 8:
+		{
+			return "Chinatown";
+		}
+		case 9:
+		{
+			return "Donut";
+		}
+		case 10:
+		{
+			return "Evac";
+		}
+		case 11:
+		{
+			return "Combine";
+		}
+		case 12:
+		{
+			return "Metro";
+		}
+		case 13:
+		{
+			return "Dogs";
+		}
+		case 14:
+		{
+			return "Rooftops";
+		}
+		case 15:
+		{
+			return "Jungle";
+		}
+		case 16:
+		{
+			return "Boss Fight";
+		}
+		default:
+		{
+			break;
+		}
+	}
+}
+
 /*
 	Name: function_b7dafa0c
 	Namespace: namespace_3ca3c537
@@ -1075,20 +1155,20 @@ function function_78c7b56e(cheat = 0)
 	//else
 	if (level.doa.current_arena == 0 && level.doa.round_number <= 5)
 	{
+
 		function_5af67667(level.doa.current_arena + level.doa.arena_skips); //THIS LINE SKIPS US TO THE ARENA AND LAP THAT WE SELECTED WITH THE DROPS ON ROUND 1
-		
+			
 		level.doa.var_da96f13c = level.doa.lap_skips;
 		a = level.doa.var_da96f13c;
 
-
 		level.doa.round_number = (4 * level.doa.current_arena) + (64 * a);
 		r = level.doa.round_number;
-		
 
 		level.doa.zombie_move_speed = level.doa.zombie_move_speed + ( r * level.doa.var_c9e1c854);
 		level.doa.zombie_health = level.doa.zombie_health +  ( r * level.doa.zombie_health_inc);
 		level.doa.var_5bd7f25a = math::clamp(level.doa.rules.var_72d934b2 - (a * 2000), 2000, 10000);
 		level.doa.var_c061227e = math::clamp(1 + (a * 0.05), 1, 1.15);
+
 	}
 	else
 	{
@@ -1135,7 +1215,7 @@ function function_a6c926fc(holdtime)
 */
 function function_5af67667(var_7dd30d23, var_b4ca654f = 0)
 {
-	if(level flag::get("doa_game_is_completed") || (!(isdefined(var_b4ca654f) && var_b4ca654f) && level.doa.arenas[var_7dd30d23].var_63b4dab3))
+	if(level flag::get("doa_game_is_completed") )// || (!(isdefined(var_b4ca654f) && var_b4ca654f) && level.doa.arenas[var_7dd30d23].var_63b4dab3))
 	{
 		if(isdefined(level.doa.var_5ddb204f))
 		{
@@ -1595,30 +1675,58 @@ function function_a8b0c139(trigger, objective_id)
 function island_fating(){
 	
 	level.doa.title3 = newhudelem();
-	level.doa.title3.alignx = "center";
+	level.doa.title3.alignx = "left";
 	level.doa.title3.aligny = "middle";
-	level.doa.title3.horzalign = "center";
+	level.doa.title3.horzalign = "left";
 	level.doa.title3.vertalign = "middle";
 	level.doa.title3.y = level.doa.title3.y - 50;
 	level.doa.title3.foreground = 1;
 	level.doa.title3.fontscale = 2.5;
-	level.doa.title3.color = (1, 0.5, 0);
+	level.doa.title3.color = (1, 0, 0);
 	level.doa.title3.hidewheninmenu = 1;
 	level.doa.title3.alpha = 0;
 	level.doa.title3.sort = 1;
 
 	level.doa.title4 = newhudelem();
-	level.doa.title4.alignx = "center";
+	level.doa.title4.alignx = "left";
 	level.doa.title4.aligny = "middle";
-	level.doa.title4.horzalign = "center";
+	level.doa.title4.horzalign = "left";
 	level.doa.title4.vertalign = "middle";
-	level.doa.title4.y = level.doa.title3.y - 30;
+	level.doa.title4.y = level.doa.title3.y;
+	level.doa.title4.x = level.doa.title3.x + 200;
 	level.doa.title4.foreground = 1;
 	level.doa.title4.fontscale = 2.5;
-	level.doa.title4.color = (1, 0.5, 0);
+	level.doa.title4.color = (1, 1, 0);
 	level.doa.title4.hidewheninmenu = 1;
 	level.doa.title4.alpha = 0;
 	level.doa.title4.sort = 1;
+
+	level.doa.title5 = newhudelem();
+	level.doa.title5.alignx = "left";
+	level.doa.title5.aligny = "middle";
+	level.doa.title5.horzalign = "left";
+	level.doa.title5.vertalign = "middle";
+	level.doa.title5.y = level.doa.title3.y - 30;
+	level.doa.title5.foreground = 1;
+	level.doa.title5.fontscale = 2.5;
+	level.doa.title5.color = (1, 0, 0);
+	level.doa.title5.hidewheninmenu = 1;
+	level.doa.title5.alpha = 0;
+	level.doa.title5.sort = 1;
+
+	level.doa.title6 = newhudelem();
+	level.doa.title6.alignx = "left";
+	level.doa.title6.aligny = "middle";
+	level.doa.title6.horzalign = "left";
+	level.doa.title6.vertalign = "middle";
+	level.doa.title6.y = level.doa.title3.y - 30;
+	level.doa.title6.x = level.doa.title5.x + 125;
+	level.doa.title6.foreground = 1;
+	level.doa.title6.fontscale = 2.5;
+	level.doa.title6.color = (1, 1, 0);
+	level.doa.title6.hidewheninmenu = 1;
+	level.doa.title6.alpha = 0;
+	level.doa.title6.sort = 1;
 	
 	thread spawnFirepower();
 	thread spawnFortune();
@@ -1747,7 +1855,7 @@ function private spawnJudgement(){
 	rock.trigger linkto(rock);
 	rock SetModel( level.doa.var_afa6d081 );
 
-	rock setScale(3);
+	rock setScale(1);
 
 	rock thread namespace_eaa992c::function_285a2999("glow_white");
 
@@ -1851,6 +1959,11 @@ function private rock_cleanup(){
 	
 	level waittill("exit_taken");
 
+	level.doa.title3 destroy();
+	level.doa.title4 destroy();
+	level.doa.title5 destroy();
+	level.doa.title6 destroy();
+
 	if(isdefined(self.trigger))
 	{
 		self.trigger delete();
@@ -1868,7 +1981,7 @@ function private spawnIncrementor(){
 	rock = Spawn( "script_model", origin);
 	rock.origin = origin;
 	rock.script_noteworthy = "a_pickup_item";
-	rock.angles = (0, 0, 0);
+	rock.angles = (0, 180, 0);
 	rock.targetname = "pickup";
 
 	rock.trigger = doa_pickups::function_c5bc781(origin);
@@ -1877,9 +1990,17 @@ function private spawnIncrementor(){
 	rock.trigger linkto(rock);
 	rock SetModel(level.doa.var_9bf7e61b);
 
-	rock setScale(5);
+	rock setScale(4);
 
 	rock thread namespace_eaa992c::function_285a2999("glow_yellow");
+
+
+	level.doa.title3 setText("Selected Lap Iteration: ");
+	level.doa.title3.alpha = 1;
+
+
+	level.doa.title4 setValue(level.doa.lap_skips + 1);
+	level.doa.title4.alpha = 1;
 
 	rock thread lapsIncrementor();
 
@@ -1904,10 +2025,12 @@ function private lapsIncrementor(){
 
 		level.doa.lap_skips++;
 
+		level.doa.title4 setValue(level.doa.lap_skips + 1);
+
 		self hide();
-		wait 1.5;
+		wait 1;
 		self show();
-		wait 1.5;
+		wait 1;
 	}
 }
 
@@ -1917,7 +2040,7 @@ function private spawnArenaIncrementor(){
 	rock = Spawn( "script_model", origin);
 	rock.origin = origin;
 	rock.script_noteworthy = "a_pickup_item";
-	rock.angles = (0, 0, 0);
+	rock.angles = (90, 0, 0);
 	rock.targetname = "pickup";
 
 	rock.trigger = doa_pickups::function_c5bc781(origin);
@@ -1929,6 +2052,13 @@ function private spawnArenaIncrementor(){
 	rock setScale(3);
 
 	rock thread namespace_eaa992c::function_285a2999("glow_yellow");
+
+	level.doa.title5 setText("Selected Arena: ");
+	level.doa.title5.alpha = 1;
+
+
+	level.doa.title6 setText(arena_name(level.doa.arena_skips));
+	level.doa.title6.alpha = 1;
 
 	rock thread arenaIncrementor();
 
@@ -1953,14 +2083,25 @@ function private arenaIncrementor(){
 
 		level.doa.arena_skips++;
 
-		if (level.doa.arena_skips > 15){
+
+		if (level.doa.boss_skip){
 			level.doa.arena_skips = 0;
+			level.doa.boss_skip = 0;
+		}
+		if (level.doa.arena_skips > 15){
+			level.doa.boss_skip = 3;
 		}
 
+		level.doa.title6 setText(arena_name(level.doa.arena_skips));
+
+
+		if (level.doa.boss_skip){
+			level.doa.arena_skips--;
+		}
 		self hide();
-		wait 1.5;
+		wait 0.5;
 		self show();
-		wait 1.5;
+		wait 0.5;
 
 		
 	}

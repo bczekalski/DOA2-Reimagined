@@ -602,8 +602,26 @@ function function_c7f824a()
 	level.doa.current_arena = 0;
 	level.lighting_state = 0;
 	level.doa.var_da96f13c = 0;
+	
+	
 	level.doa.arena_skips = 1;
+	level.doa.boss_skip = 0;
+
 	level.doa.lap_skips = 0;
+
+	level.doa.game_mode_type = 0;
+	level.doa.endurance_mode = 0;
+	level.doa.hc_endurance_mode = 0;
+	level.doa.gauntlet_mode = 0;
+	level.doa.boss_guantlet = 0;
+
+	level.doa.life_stealing = 1;
+
+
+
+
+
+
 	level.doa.var_2836c8ee = undefined;
 	level.doa.in_intermission = 0;
 	level.doa.flipped = 0;

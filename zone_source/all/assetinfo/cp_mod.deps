@@ -10,13 +10,13 @@ ignore_missing_shipped,cp_patch
 scriptparsetree,scripts/cp/doa/_doa_arena.csc
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_arena.csc,1652995944,
 scriptparsetree,scripts/cp/doa/_doa_arena.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_arena.gsc,1653436543,
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_arena.gsc,1653495803,
 scriptparsetree,scripts/cp/doa/_doa_core.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_core.gsc,1653416808,
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_core.gsc,1653485601,
 scriptparsetree,scripts/cp/doa/_doa_fate.gsc
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_fate.gsc,1653051552,
 scriptparsetree,scripts/cp/doa/_doa_round.gsc
-	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_round.gsc,1653425984,
+	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_round.gsc,1653495906,
 scriptparsetree,scripts/cp/doa/_doa_utility.gsc
 	file,C:\Program Files (x86)\Steam\steamapps\common\Call of Duty Black Ops III\mods\doa2_reimagined\scripts\cp\doa\_doa_utility.gsc,1652995944,
 texturecombo,cp_mod

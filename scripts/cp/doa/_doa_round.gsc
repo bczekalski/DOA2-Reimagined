@@ -757,8 +757,14 @@ function function_703bb8b2(round_number)
 	level.doa.spawn_sequence = [];
 	max = level.doa.rules.var_57cac10a + (level.doa.var_da96f13c * level.doa.rules.var_57cac10a);
 	waves = 6 + (int(round_number * 1.2));
-	if (round_number < 4){ //round length limiting code -- waves cap
+	island = false;
+	if (round_number <= 4){ //round length limiting code -- waves cap
 		waves = 5;
+		island = true;
+	}
+	if (!island && level.doa.boss_skip){
+		waves = 1;
+		level.doa.boss_skip--;
 	}
 	if(waves > max)
 	{

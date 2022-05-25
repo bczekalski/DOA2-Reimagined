@@ -2174,7 +2174,7 @@ function function_3682cfe4(einflictor, attacker, idamage, smeansofdeath, sweapon
 		}
 		else
 		{
-			self thread function_c7471371();
+			self thread function_c7471371(); //This line right here enables life stealing, if there is a way to disable the line that would be YUGE
 		}
 	}
 	else
